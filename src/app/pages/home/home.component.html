@@ -1,0 +1,93 @@
+<main>
+
+    <div class="first-tab tab">
+        <div class="content">
+            <h2>Your guide to the world of useful things</h2>
+            <p>We explore global trends and marketplaces to find those rare, functional items that add comfort to your home and style to your daily routine. No more endless scrolling — just a curated selection of things that truly matter.</p>
+            <button class="gts-button" [routerLink]="['/store']">Go to the store</button>
+            <!-- (click)="removeProduct(product._id)" -->
+        </div>
+        <img src="/man.jpg" alt="cart">
+    </div>
+
+    <div class="second-tab tab">
+        <img src="/Box.png" alt="Carefully packed inspiration">
+        <div class="content">
+            <h2>Why Malinka?</h2>
+            
+            <p class="description">
+                We believe that your space should reflect your personality. 
+                Instead of overwhelming you with thousands of random items, we offer a 
+                <strong>carefully curated collection</strong> of lifestyle essentials that 
+                balance modern aesthetics with everyday utility.
+            </p>
+
+            <div class="features">
+                <div class="feature-item">
+                    <span class="icon">✨</span>
+                    <div>
+                        <h4>Handpicked Aesthetics</h4>
+                        <p>We choose products that we would proudly use in our own homes.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="icon">🔍</span>
+                    <div>
+                        <h4>Attention to Detail</h4>
+                        <p>We review materials and functionality so you don't have to guess.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="icon">💬</span>
+                    <div>
+                        <h4>Direct Connection</h4>
+                        <p>No bots. Chat with us directly on Telegram for any questions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="gts-button" [routerLink]="['/store']">Explore the Collections</button>
+        </div>
+    </div>
+
+    <div class="third-tab tab">
+        <div class="content">
+            <span class="subtitle">Discover Your Style</span>
+            <h2>Explore our Curated Worlds</h2>
+            <p>We’ve organized our finds into small, meaningful collections. Whether you’re looking to upgrade your workspace or find the perfect gift, we’ve already done the filtering for you.</p>
+            
+            <div class="category-grid">
+                <div class="cat-card">
+                    <span class="cat-icon">🏠</span>
+                    <span>Home</span>
+                </div>
+                <div class="cat-card">
+                    <span class="cat-icon">📱</span>
+                    <span>Electronics</span>
+                </div>
+                <div class="cat-card">
+                    <span class="cat-icon">👕</span>
+                    <span>Clothing</span>
+                </div>
+                <div class="cat-card">
+                    <span class="cat-icon">🎧</span>
+                    <span>Accessories</span>
+                </div>
+                <div class="cat-card">
+                    <span class="cat-icon">🎁</span>
+                    <span>Gifts</span>
+                </div>
+                <div class="cat-card">
+                    <span class="cat-icon">📦</span>
+                    <span>Other</span>
+                </div>
+            </div>
+
+            <button class="gts-button" [routerLink]="['/store']">View All Collections</button>
+        </div>
+        <img src="/list.png" alt="Our diverse collection">
+    </div>
+
+</main>

@@ -1,0 +1,151 @@
+header {
+    position: relative;
+    overflow: hidden;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #600016;
+}
+header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    
+    background-image: url('/malinka_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    filter: blur(1vw);
+    transform: scale(1.1);
+    z-index: -1;
+    min-height: 300px;
+}
+
+.title{
+    text-align: center;
+    margin: 0;
+    padding: 70px 0 10px 0;
+    margin: 100px 0;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+.title h1 {
+    font-weight: 500;
+    margin: 0;
+    font-size: clamp(50px, 5vw, 100px);
+    
+}   
+.title em {
+    font-weight: 600;
+    padding: 0;
+    font-size: clamp(20px, 2vw, 40px);
+    opacity: 0.5;
+}
+
+.mian-nav ul a {
+    text-decoration: none;
+    color: #fff;
+    font-size: clamp(10px, 1vw, 20px);
+    font-weight: 450;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    opacity: 1;
+
+    padding: 20px 20px;
+    height: 100%;
+    
+}
+nav a:hover {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(253, 89, 73, 0.5);
+}
+
+.mian-nav {
+    display: flex;  
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(5px);
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #0000006e;
+}
+
+.mian-nav ul {
+    flex: 2;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    justify-content: center;
+    background: transparent;
+    backdrop-filter: none;
+    width: 100%;
+    flex-wrap: wrap;
+    /* gap: 40px;  */
+}
+.mian-nav::after {
+    content: "";
+    flex: 1;
+}
+.logo {
+    padding: 10px 40px;
+    height: 50px;
+    width: auto;
+    flex: 0 0 auto;
+    pointer-events: painted;
+}
+.logo-link {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    pointer-events: none;
+}
+.logo:hover {
+    opacity: 1;
+}
+
+.mian-nav ul li a.store {
+    opacity: 0.8; 
+    font-weight: 600;
+    color: #fff; 
+    background: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px; 
+}
+
+.mian-nav ul li a.store:hover {
+    background: rgba(253, 88, 73, 0.129);
+    border-color: rgba(253, 89, 73, 0.5);
+    box-shadow: 0 0 15px rgba(253, 89, 73, 0.3);
+}
+
+.mian-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.4s ease-in-out, background 0.3s;
+}
+
+.nav-hidden {
+    transform: translateY(-100%);
+}
+
+.nav-visible {
+    transform: translateY(0);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mian-nav ul li a.active-link {
+    color: #f10020;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(253, 89, 73, 0.3);
+    -webkit-text-stroke: 0.1px #000000;
+}

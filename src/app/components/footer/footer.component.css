@@ -1,0 +1,34 @@
+footer {
+    background-color: #f4f4f4;
+    border-top: 5px solid #b4012b;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    
+    font-size: clamp(10px, 1vw, 20px);
+    line-height: 2; 
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #b4012b; 
+}
+
+
+.Corporation {
+    text-align: center;
+    width: 100%;
+    margin: 20px 0 10px 0;
+    font-size: clamp(8px, 0.8vw, 16px);
+    color: #777;
+}

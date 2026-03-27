@@ -1,0 +1,36 @@
+<header *ngIf="router.url === '/'" class="main-header">
+
+    <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
+        <a [routerLink]="['/']" class="logo-link">
+            <img src="Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
+        </a>
+        <ul>
+            <li><a [routerLink]="['/']" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">General</a></li>
+            <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
+            <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
+            <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="title">
+        <h1>Malinka</h1>
+        <em>The best store</em>
+    </div>
+
+</header>
+
+<header *ngIf="router.url !== '/'" class="header-diff">
+    <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
+        <a [routerLink]="['/']" class="logo-link">
+            <img src="Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
+        </a>
+        <ul>
+            <li><a [routerLink]="['/']" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">General</a></li>
+            <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
+            <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
+            <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,27 @@
+<main class="shop-container">
+    <h1 class="shop-title">Malinka Collection</h1>
+
+    <p *ngIf="errorMessage" class="status-message error">{{errorMessage}}</p>
+    <p *ngIf="products.length === 0 && !errorMessage" class="status-message loading">
+        Loading fresh products...
+    </p>
+
+    <div class="product-grid">
+        <div class="product-card" *ngFor="let product of products">
+            <a [routerLink]="['/product', product._id]">
+                <div class="product-image">
+                    <img [src]="product.imageUrl || 'assets/no-image.png'" alt="{{product.title}}">
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-name">{{product.title}}</h3>
+                    <p class="product-price">{{product.price | currency}}</p>
+                    
+                    <button class="btn-cart" (click)="addToCart(product._id)">
+                        Add to cart
+                    </button>
+                </div>
+            </a>
+        </div>
+    </div>
+</main>
