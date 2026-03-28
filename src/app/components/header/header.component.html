@@ -2,14 +2,27 @@
 
     <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
         <a [routerLink]="['/']" class="logo-link">
-            <img src="Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
+            <img src="./logo/Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
         </a>
-        <ul>
+
+        <ul class="central-menu">
             <li><a [routerLink]="['/']" routerLinkActive="active-link"
                     [routerLinkActiveOptions]="{exact: true}">General</a></li>
             <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
             <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
             <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+        </ul>
+
+        <ul class="right-menu-icons">
+            <li><a [routerLink]="['/liked']">
+                <img src="./icons/Heart.png" class="liked" alt="Liked products">
+            </a></li>
+            <li><a [routerLink]="['/cart']">
+                <img src="./icons/Shopping-Cart.png" class="cart" alt="Cart">
+            </a></li>
+            <li><a [routerLink]="['/profile']">
+                <img src="./icons/Profile.png" class="profile" alt="Profile">
+            </a></li>
         </ul>
     </nav>
 
@@ -21,16 +34,29 @@
 </header>
 
 <header *ngIf="router.url !== '/'" class="header-diff">
-    <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
+        <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
         <a [routerLink]="['/']" class="logo-link">
-            <img src="Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
+            <img src="./logo/Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
         </a>
-        <ul>
+
+        <ul class="central-menu">
             <li><a [routerLink]="['/']" routerLinkActive="active-link"
                     [routerLinkActiveOptions]="{exact: true}">General</a></li>
             <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
             <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
             <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+        </ul>
+
+        <ul class="right-menu-icons">
+            <li><a [routerLink]="['/liked']">
+                <img src="./icons/Heart.png" class="liked" alt="Liked products">
+            </a></li>
+            <li><a [routerLink]="['/cart']">
+                <img src="./icons/Shopping-Cart.png" class="cart" alt="Cart">
+            </a></li>
+            <li><a [routerLink]="['/profile']">
+                <img src="./icons/Profile.png" class="profile" alt="Profile">
+            </a></li>
         </ul>
     </nav>
 </header>
