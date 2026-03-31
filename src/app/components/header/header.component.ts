@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(public router: Router) {}
+  constructor(public router: Router, protected authService: AuthService) {}
 
   lastScrollTop = 0;
   isNavHidden = false;

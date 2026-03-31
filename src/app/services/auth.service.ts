@@ -15,7 +15,13 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   register(userData: any) {
-    return this.http.post(`${this.apiUrl}/register`, userData);
+    return this.http.post(`${this.apiUrl}/register`, userData).pipe(
+      tap((res: any) => {
+        // Сохраняем токен и сессию СРАЗУ
+        localStorage.setItem('token', res.token);
+        this.currentUser.set(res.user);
+      })
+    );
   }
 
   login(credentials: any) {
@@ -26,7 +32,7 @@ export class AuthService {
       })
     );
   }
-
+  
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }

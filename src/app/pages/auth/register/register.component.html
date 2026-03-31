@@ -1,11 +1,11 @@
 <div class="auth-container">
   <div class="auth-card">
-    <h2>Welcome Back</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <input type="name" formControlName="anme" placeholder="Name">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input type="name" formControlName="name" placeholder="Name">
         <input type="email" formControlName="email" placeholder="Email">
         <input type="password" formControlName="password" placeholder="Password">
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button type="submit" [disabled]="registerForm.invalid">Create account</button>
     </form>
     <p>Have registered account? <a routerLink="/login">Login</a></p>
   </div>

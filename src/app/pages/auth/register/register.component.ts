@@ -17,16 +17,17 @@ export class RegisterComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  loginForm = this.fb.group({
+  registerForm = this.fb.group({
+    name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
+    if (this.registerForm.valid) {
+      this.authService.register(this.registerForm.value).subscribe({
         next: () => this.router.navigate(['/profile']),
-        error: (err) => alert('Login failed: ' + err.error.message)
+        error: (err) => alert('Registration failed: ' + err.error.message)
       });
     }
   }
