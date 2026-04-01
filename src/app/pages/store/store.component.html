@@ -3,9 +3,8 @@
 
     <p *ngIf="errorMessage" class="status-message error">{{errorMessage}}</p>
     <p *ngIf="products.length === 0 && !errorMessage" class="status-message loading">
-        Loading fresh products...
+        <img src="./icons/loading.gif" alt="loading">
     </p>
-
     <div class="product-grid">
         <div class="product-card" *ngFor="let product of products">
             <a [routerLink]="['/product', product._id]">

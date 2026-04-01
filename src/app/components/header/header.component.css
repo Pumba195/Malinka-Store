@@ -195,8 +195,6 @@ header::before {
 
 
 
-.profile.logged-in {
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px #f10020);
-    border: 1px solid #f10020;
-    border-radius: 50%;
+.right-menu-icons .profile.logged-in {
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px #ff0022);
 }

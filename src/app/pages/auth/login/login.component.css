@@ -1,22 +1,30 @@
-/* Вставь это в login.component.css и register.component.css */
 .auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    padding-top: 100px; /* Чтобы не перекрывал фиксированный хедер */
+    padding: 100px 0 30px 0;
 }
+
 
 .auth-card {
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(15px);
-    padding: 40px;
+    padding: 20px 40px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
     width: 100%;
     max-width: 400px;
     color: white;
     text-align: center;
+}
+
+h2{
+    font-weight: 700;
+}
+
+h4{
+    margin: 0 0 0 5px;
+    font-weight: 400;
 }
 
 input {
@@ -33,19 +41,70 @@ input {
 button {
     width: 100%;
     padding: 12px;
-    background: #f10020; /* Твой красный цвет */
+    background: #f10020;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 25px;
+    font-weight: 700;
 }
 
-button:disabled {
+/* button:disabled {
     opacity: 0.5;
-}
+} */
 
 input::placeholder{
-    color:#f10020
+    color:white;
+    opacity: 0.7;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.error-text {
+    color: #ff4d4d;
+    font-size: 12px;
+    display: block;
+    margin-top: -5px;
+    margin-left: 5px;
+}
+
+.server-error {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff4d4d;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: #ff4d4d;
+}
+
+.status img{
+    height: 60px;
+    width: auto;
+}
+
+.change-page {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.change-page a {
+    color: #f10020;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.change-page a:hover {
+    text-decoration: underline;
 }

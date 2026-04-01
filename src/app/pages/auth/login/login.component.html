@@ -2,10 +2,41 @@
   <div class="auth-card">
     <h2>Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input type="email" formControlName="email" placeholder="Email">
-      <input type="password" formControlName="password" placeholder="Password">
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+      <div class="form-group">
+        <h4>Email</h4>
+        <input type="email" formControlName="email" placeholder="Type your email">
+        @if (f.email.touched && f.email.errors) {
+          <small class="error-text">
+            @if (f.email.errors['required']) { Email is required }
+            @if (f.email.errors['email']) { Please enter a valid email }
+          </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <h4>Password</h4>
+        <input type="password" formControlName="password" placeholder="Type your password">
+        @if (f.password.touched && f.password.errors) {
+          <small class="error-text">
+            @if (f.password.errors['required']) { Password is required }
+            @if (f.password.errors['minlength']) { Minimum 6 characters }
+          </small>
+        }
+      </div>
+
+      <div class="status">
+        @if (errorMessage) {
+          <p class="server-error">{{ errorMessage }}</p>
+        }
+        @if (loading) {
+          <img src="./icons/loading.gif" alt="loading">
+        }
+      </div>
+
+      <button type="submit">Login</button>
     </form>
-    <p>New here? <a routerLink="/register">Create account</a></p>
+
+    <p class="change-page">New here? <a [routerLink]="['/register']">Create account</a></p>
   </div>
 </div>

@@ -95,5 +95,11 @@ a {
     font-size: 1.1rem;
 }
 
-.error { color: #d63031; }
-.loading { color: #636e72; }
+.error { 
+    color: #d63031; 
+}
+
+.loading img { 
+    height: 60px;
+    width: auto;
+}
