@@ -1,11 +1,11 @@
 <div class="auth-container">
   <div class="auth-card">
-    <h2>Login</h2>
+    <h1>Login</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
         <h4>Email</h4>
-        <input type="email" formControlName="email" placeholder="Type your email">
+        <input type="email" formControlName="email" placeholder="Enter your email">
         @if (f.email.touched && f.email.errors) {
           <small class="error-text">
             @if (f.email.errors['required']) { Email is required }
@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <h4>Password</h4>
-        <input type="password" formControlName="password" placeholder="Type your password">
+        <input type="password" formControlName="password" placeholder="Enter your password">
         @if (f.password.touched && f.password.errors) {
           <small class="error-text">
             @if (f.password.errors['required']) { Password is required }

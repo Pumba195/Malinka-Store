@@ -6,7 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
