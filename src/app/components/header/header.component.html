@@ -1,68 +1,65 @@
-<header *ngIf="router.url === '/'" class="main-header">
-
+@if (router.url === '/') {
+  <header class="main-header">
     <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
-        <a [routerLink]="['/']" class="logo-link">
-            <img src="./logo/Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
-        </a>
-
-        <ul class="central-menu">
-            <li><a [routerLink]="['/']" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}">General</a></li>
-            <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
-            <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
-            <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+      <a [routerLink]="['/']" class="logo-link">
+        <img src="./logo/Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
+      </a>
+      <ul class="central-menu">
+        <li><a [routerLink]="['/']" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">General</a></li>
+        <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
+        <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
+        <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+      </ul>
+      <ul class="right-menu-icons">
+        <li><a [routerLink]="['/liked']">
+          <img src="./icons/Heart.png" class="liked" alt="Liked products">
+        </a></li>
+        <li><a [routerLink]="['/cart']">
+          <img src="./icons/Shopping-Cart.png" class="cart" alt="Cart">
+        </a></li>
+        <li><a [routerLink]="authService.currentUser() ? '/profile' : '/login'">
+          <img src="./icons/Profile.png"
+            class="profile"
+            [class.logged-in]="authService.currentUser()"
+            alt="Profile">
+          </a></li>
         </ul>
-
-        <ul class="right-menu-icons">
-            <li><a [routerLink]="['/liked']">
-                    <img src="./icons/Heart.png" class="liked" alt="Liked products">
-                </a></li>
-            <li><a [routerLink]="['/cart']">
-                    <img src="./icons/Shopping-Cart.png" class="cart" alt="Cart">
-                </a></li>
-            <li><a [routerLink]="authService.currentUser() ? '/profile' : '/login'">
-                    <img src="./icons/Profile.png" 
-                        class="profile" 
-                        [class.logged-in]="authService.currentUser()"
-                        alt="Profile">
-            </a></li>
-        </ul>
-    </nav>
-
-    <div class="title">
+      </nav>
+      <div class="title">
         <h1>Malinka</h1>
         <em>The best store</em>
-    </div>
+      </div>
+    </header>
+  }
 
-</header>
-
-<header *ngIf="router.url !== '/'" class="header-diff">
-    <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
+  @if (router.url !== '/') {
+    <header class="header-diff">
+      <nav class="mian-nav" [class.nav-hidden]="isNavHidden">
         <a [routerLink]="['/']" class="logo-link">
-            <img src="./logo/Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
+          <img src="./logo/Malinka_Logo_Color.png" class="logo" alt="Malinka Logo">
         </a>
-
         <ul class="central-menu">
-            <li><a [routerLink]="['/']" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}">General</a></li>
-            <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
-            <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
-            <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
+          <li><a [routerLink]="['/']" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}">General</a></li>
+          <li><a class="store" [routerLink]="['/store']" routerLinkActive="active-link">Store</a></li>
+          <li><a [routerLink]="['/about']" routerLinkActive="active-link">About us</a></li>
+          <li><a [routerLink]="['/contact']" routerLinkActive="active-link">Contact</a></li>
         </ul>
-
         <ul class="right-menu-icons">
-            <li><a [routerLink]="['/liked']">
-                    <img src="./icons/Heart.png" class="liked" alt="Liked products">
-                </a></li>
-            <li><a [routerLink]="['/cart']">
-                    <img src="./icons/Shopping-Cart.png" class="cart" alt="Cart">
-                </a></li>
-            <li><a [routerLink]="authService.currentUser() ? '/profile' : '/login'">
-                    <img src="./icons/Profile.png" 
-                        class="profile" 
-                        [class.logged-in]="authService.currentUser()"
-                        alt="Profile">
+          <li><a [routerLink]="['/liked']">
+            <img src="./icons/Heart.png" class="liked" alt="Liked products">
+          </a></li>
+          <li><a [routerLink]="['/cart']">
+            <img src="./icons/Shopping-Cart.png" class="cart" alt="Cart">
+          </a></li>
+          <li><a [routerLink]="authService.currentUser() ? '/profile' : '/login'">
+            <img src="./icons/Profile.png"
+              class="profile"
+              [class.logged-in]="authService.currentUser()"
+              alt="Profile">
             </a></li>
-        </ul>
-    </nav>
-</header>
+          </ul>
+        </nav>
+      </header>
+    }

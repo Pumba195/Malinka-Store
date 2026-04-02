@@ -1,44 +1,40 @@
 <main class="product-page">
-    <div class="product-wrapper" *ngIf="product">
-        
-        <div class="product-media">
-            <div class="image-holder">
-                <img [src]="product.imageUrl || 'assets/no-image.png'" alt="{{product.title}}">
-            </div>
+  @if (product) {
+    <div class="product-wrapper">
+      <div class="product-media">
+        <div class="image-holder">
+          <img [src]="product.imageUrl || 'assets/no-image.png'" alt="{{product.title}}">
         </div>
-
-        <div class="product-details">
-            <div class="meta">
-                <span class="category">{{product.category}}</span>
-                <span class="stock-status">In Stock</span>
-            </div>
-
-            <h1 class="product-title">{{product.title}}</h1>
-            
-            <div class="price-tag">
-                <span class="amount">{{product.price | currency}}</span>
-            </div>
-
-            <div class="description">
-                <p>{{product.content || 'Premium quality handcrafted item from our latest collection.'}}</p>
-            </div>
-
-            <div class="action-area">
-                <button class="gts-button">Add to cart</button>
-                <button class="wishlist-btn">♡</button>
-            </div>
-
-            <div class="features-minimal">
-                <div class="f-item"><span>✓</span> Free Shipping</div>
-                <div class="f-item"><span>✓</span> 14 Days Return</div>
-            </div>
-
-            <a [routerLink]="['/store']" class="back-btn">← Back to collection</a>
+      </div>
+      <div class="product-details">
+        <div class="meta">
+          <span class="category">{{product.category}}</span>
+          <span class="stock-status">In Stock</span>
         </div>
+        <h1 class="product-title">{{product.title}}</h1>
+        <div class="price-tag">
+          <span class="amount">{{product.price | currency}}</span>
+        </div>
+        <div class="description">
+          <p>{{product.content || 'Premium quality handcrafted item from our latest collection.'}}</p>
+        </div>
+        <div class="action-area">
+          <button class="gts-button">Add to cart</button>
+          <button class="wishlist-btn">♡</button>
+        </div>
+        <div class="features-minimal">
+          <div class="f-item"><span>✓</span> Free Shipping</div>
+          <div class="f-item"><span>✓</span> 14 Days Return</div>
+        </div>
+        <a [routerLink]="['/store']" class="back-btn">← Back to collection</a>
+      </div>
     </div>
+  }
 
-    <div class="product-error" *ngIf="!product">
-        <h2>Product not found</h2>
-        <button class="gts-button" [routerLink]="['/store']">Back to shop</button>
+  @if (!product) {
+    <div class="product-error">
+      <h2>Product not found</h2>
+      <button class="gts-button" [routerLink]="['/store']">Back to shop</button>
     </div>
+  }
 </main>

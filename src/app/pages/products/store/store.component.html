@@ -1,26 +1,33 @@
-<main class="shop-container">
-    <h1 class="shop-title">Malinka Collection</h1>
+<main class="shop-container">   <h1 class="shop-title">Malinka Collection</h1>
 
-    <p *ngIf="errorMessage" class="status-message error">{{errorMessage}}</p>
-    <p *ngIf="products.length === 0 && !errorMessage" class="status-message loading">
-        <img src="./icons/loading.gif" alt="loading">
+  @if (errorMessage) {
+    <p class="status-message error">{{errorMessage}}</p>
+  }
+  @if (products.length === 0 && !errorMessage) {
+    <p class="status-message loading">
+      <img src="./icons/loading.gif" alt="loading">
     </p>
-    <div class="product-grid">
-        <div class="product-card" *ngFor="let product of products">
-            <a [routerLink]="['/product', product._id]">
-                <div class="product-image">
-                    <img [src]="product.imageUrl || './misc/no-image.png'" alt="{{product.title}}">
-                </div>
-                
-                <div class="product-info">
-                    <h3 class="product-name">{{product.title}}</h3>
-                    <p class="product-price">{{product.price | currency}}</p>
-                    
-                    <button class="btn-cart" (click)="addToCart(product._id)">
-                        Add to cart
-                    </button>
-                </div>
-            </a>
-        </div>
+  }
+  <div class="product-grid">
+    @for (product of products; track product) {
+      <div class="product-card">
+        <a [routerLink]="['/product', product._id]">
+          <div class="product-image">
+            <img [src]="product.imageUrl || './misc/no-image.png'" alt="{{product.title}}">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{product.title}}</h3>
+            <p class="product-price">{{product.price | currency}}</p>
+            <button class="btn-cart" (click)="addToCart(product._id)">
+              Add to cart
+            </button>
+          </div>
+        </a>
+      </div>
+    }
+  </div>
+    </div>
+    </div>
+    </div>
     </div>
 </main>

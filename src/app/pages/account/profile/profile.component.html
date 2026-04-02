@@ -1,11 +1,21 @@
-<main>
-    <div *ngIf="user()" class="profile-card">
-    <h1>Welcome, {{ user().name }}!</h1>
-    <p>Email: {{ user().email }}</p>
-    <button (click)="onLogout()">Exit</button>
-    </div>
+<main class="profile-container">
+  @if (user()) {
+    <div class="profile-card">
+      
+      <div class="user-info">
+        <h1>Welcome, <span>{{ user().name }}</span>!</h1>
+        <p class="email-label">Email address</p>
+        <p class="email-value">{{ user().email }}</p>
+      </div>
 
-    <div *ngIf="!user()">
-    <p>Please, log in to see your profile.</p>
+      <button class="logout-btn" (click)="onLogout()">
+        <span class="icon">Logout</span>
+      </button>
     </div>
+  } @else {
+    <div class="guest-card">
+      <p>Please, log in to see your profile.</p>
+      <a routerLink="/login" class="login-link">Go to Login</a>
+    </div>
+  }
 </main>
