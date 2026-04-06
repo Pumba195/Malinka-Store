@@ -19,6 +19,13 @@
         <div class="product-info">
           <h3 class="product-name">{{product.title}}</h3>
           <p class="product-price">{{product.price | currency}}</p>
+          <button class="favorite-badge" (click)="toggleLike($event, product._id)">
+            <img [class]="productsService.isFavorite(product._id) ? 'fas fa-heart' : 'far fa-heart'" src="./icons/Heart.png" alt="Like">
+          </button>
+
+          <!-- <div class="favorite-badge" (click)="toggleLike($event, product._id)">
+            <i [class]="productsService.isFavorite(product._id) ? 'fas fa-heart' : 'far fa-heart'">Like</i>
+          </div> -->
           <button class="btn-cart" (click)="addToCart($event, product._id)">
             Add to cart
           </button>

@@ -15,7 +15,7 @@ import { isPlatformBrowser } from '@angular/common'
 })
 export class StoreComponent implements OnInit {
   constructor(
-    private readonly productsService: ProductsService,
+    protected readonly productsService: ProductsService,
     private readonly cartService: CartService
   ) { }
 
@@ -51,13 +51,20 @@ export class StoreComponent implements OnInit {
   addToCart(event: Event, productId: string) {
     event.preventDefault();
     event.stopPropagation();
-    event.stopImmediatePropagation(); // This stops other listeners on the same element
-    this.cartService.addToCart(productId, 1);
+    event.stopImmediatePropagation();
+    this.cartService.addToCart(productId, 1).subscribe({});
   }
 
   removeProduct(id: string) {
     this.productsService.deleteProduct(id).subscribe({
       next: () => this.getProducts()
     })
+  }
+
+  toggleLike(event: Event, productId: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation(); 
+    this.productsService.toggleFavorite(productId).subscribe({});
   }
 }

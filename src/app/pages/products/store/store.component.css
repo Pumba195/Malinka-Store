@@ -78,15 +78,16 @@ a {
     padding: 10px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(to right, #d90000, #b4012b);
+    background: #b4012b;
     color: #fff;
     cursor: pointer;
     font-weight: 600;
-    transition: background 0.2s;
+    transition: background 0.3s ease;
 }
 
 .btn-cart:hover {
-    background: linear-gradient(to right, #ef0038, #e70101);
+    background: #d0001c;
+    box-shadow: 0 0 5px #d0001c;
 }
 
 .status-message {
@@ -102,4 +103,11 @@ a {
 .loading img { 
     height: 60px;
     width: auto;
+}
+
+.favorite-badge img {
+    height: 24px;
+    width: auto;
+    transition: all 0.3s ease;
+    opacity: 0.8;
 }

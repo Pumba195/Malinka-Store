@@ -1,1 +1,44 @@
-<p>liked works!</p>
+<main class="profile-container">
+    <div class="profile-card cart-wide">
+        <div class="user-info">
+            <h1>Your <span>Wishlist</span></h1>
+            <p class="email-label" *ngIf="likedItems().length > 0">
+                You have saved {{ likedItems().length }} items you love
+            </p>
+        </div>
+
+        <div *ngIf="likedItems().length === 0" class="guest-card">
+            <p>You haven't liked any items yet.</p>
+            <a routerLink="/store" class="login-link">Explore Store</a>
+        </div>
+
+        <div class="cart-item-row" *ngFor="let product of likedItems()">
+            <a [routerLink]="['/product', product._id]" class="item-link">
+                <div class="item-img-wrapper">
+                    <img [src]="product.imageUrl || './misc/no-image.png'" alt="product">
+                </div>
+
+                <div class="item-details">
+                    <p class="product-title">{{ product.title }}</p>
+                    <p class="product-price-info">
+                        {{ product.price | currency }}
+                    </p>
+                </div>
+            </a>
+
+            <div class="item-actions">
+                <!-- <button class="add-to-cart-small" (click)="addToCart(product._id)">
+                    Add to Cart
+                </button> -->
+
+                <button (click)="toggleLike(product._id)" class="remove-btn like-active" title="Remove from wishlist">
+                    <i class="fas fa-heart">❤</i>
+                </button>
+            </div>
+        </div>
+
+        <div class="cart-footer" *ngIf="likedItems().length > 0">
+            <a routerLink="/store" class="back-link">← Continue Shopping</a>
+        </div>
+    </div>
+</main>

@@ -2,6 +2,8 @@ import { Injectable, signal, computed, inject, PLATFORM_ID } from '@angular/core
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { CartItem } from '../models/cart-item.model';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -41,10 +43,14 @@ export class CartService {
     }
   }
 
-  addToCart(productId: string, quantity: number = 1) {
-    this.http.post<any>(`${this.apiUrl}/add`, { productId, quantity }).subscribe({
-      next: (user) => this.cartItems.set(user.cart)
-    });
+  addToCart(productId: string, quantity: number = 1): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/add`, { productId, quantity }).pipe(
+      tap((user) => {
+        if (user && user.cart) {
+          this.cartItems.set(user.cart);
+        }
+      })
+    );
   }
 
   removeFromCart(productId: string) {
