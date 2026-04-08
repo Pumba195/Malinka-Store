@@ -1,54 +1,51 @@
-.profile-container {
+.liked-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    padding: 120px 20px 40px 20px;
+    padding: 120px 20px 80px 20px;
 }
 
-.profile-card.cart-wide {
+.liked-wide {
     background: #1a1a1a;
     width: 100%;
     max-width: 900px;
-    border-radius: 20px;
     padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #333;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-    border: 1px solid #222;
     color: white;
 }
 
-/* Заголовок */
-.user-info h1 {
-    font-size: 2rem;
+.liked-info h1 {
+    font-size: 2.2rem;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
-.user-info h1 span {
-    color: #f10020; /* Цвет "Малинки" */
+.liked-info h1 span {
+    color: #f10020;
 }
 
-.email-label {
+.subtitle-label {
     color: #888;
-    margin-bottom: 30px;
     font-size: 0.95rem;
+    margin-bottom: 30px;
 }
 
-/* Строка товара */
-.cart-item-row {
+.liked-item-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #333;
     transition: background 0.3s ease;
 }
 
-.cart-item-row:hover {
-    background: rgba(255, 255, 255, 0.02);
+.liked-item-row:hover {
+    background: rgba(255, 255, 255, 0.03);
 }
 
-/* Ссылка на товар (обертка картинки и текста) */
 .item-link {
     display: flex;
     align-items: center;
@@ -74,35 +71,36 @@
     object-fit: cover;
 }
 
-/* Детали товара */
 .product-title {
     color: white;
     font-weight: 600;
     font-size: 1.1rem;
-    margin: 0 0 5px 0;
-}
-
-.product-price-info {
-    color: #f10020;
-    font-weight: 700;
     margin: 0;
 }
 
-/* Кнопки действий */
+.product-price-info {
+    color: #888;
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+}
+
 .item-actions {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
 }
 
-/* Кнопка "Удалить" (Сердечко) */
 .remove-btn {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     padding: 10px;
     transition: transform 0.2s ease;
+}
+
+.remove-btn p{
+    margin: 0;
 }
 
 .remove-btn:hover {
@@ -114,8 +112,12 @@
     filter: drop-shadow(0 0 5px rgba(241, 0, 32, 0.4));
 }
 
-/* Пустое состояние (Guest Card) */
-.guest-card {
+.loading img { 
+    height: 60px;
+    text-align: center;
+}
+
+.status-message {
     text-align: center;
     padding: 50px 20px;
 }
@@ -126,26 +128,26 @@
     margin-bottom: 20px;
 }
 
-.login-link {
+.store-link {
     display: inline-block;
     background: #f10020;
     color: white;
     padding: 12px 30px;
-    border-radius: 10px;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: bold;
     transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
-.login-link:hover {
-    background: #c1001a;
-    box-shadow: 0 0 20px rgba(241, 0, 32, 0.4);
+.store-link:hover {
+    box-shadow: 0 0 15px #f10020;
+    transform: translateY(-2px);
 }
 
-/* Футер */
-.cart-footer {
+.liked-footer {
     margin-top: 30px;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
 .back-link {
@@ -159,16 +161,18 @@
     color: #f10020;
 }
 
-/* Адаптивность для мобилок */
-@media (max-width: 600px) {
-    .cart-item-row {
+@media (max-width: 768px) {
+    .liked-item-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
     }
 
     .item-actions {
         width: 100%;
-        justify-content: flex-end;
+        justify-content: space-between;
+    }
+    
+    .liked-wide {
+        padding: 20px;
     }
 }

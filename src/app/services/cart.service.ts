@@ -1,5 +1,4 @@
-import { Injectable, signal, computed, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartItem } from '../models/cart-item.model';
 import { tap } from 'rxjs/operators';
@@ -7,17 +6,12 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
-  private platformId = inject(PLATFORM_ID);
+
   private http = inject(HttpClient);
 
   private apiUrl = 'http://localhost:3000/cart';
   private cartItems = signal<CartItem[]>([]);
-
-  constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.loadCart();
-    }
-  }
+  public isLoading = signal<boolean>(false);
 
   totalCount = computed(() =>
     this.cartItems().reduce((acc, item) => acc + item.quantity, 0)
@@ -35,12 +29,19 @@ export class CartService {
 
   loadCart() {
     // Extra safety check for localStorage
-    if (isPlatformBrowser(this.platformId)) {
-      this.http.get<CartItem[]>(this.apiUrl).subscribe({
-        next: (items) => this.cartItems.set(items),
-        error: (err) => console.error('Failed to load cart', err)
-      });
-    }
+    this.isLoading.set(true);
+
+    this.http.get<CartItem[]>(this.apiUrl).subscribe({
+      next: (items) => {
+        this.isLoading.set(false);
+        this.cartItems.set(items);
+      },
+      error: (err) => {
+        this.isLoading.set(false);
+        console.error('Failed to load cart', err)
+      }
+    });
+
   }
 
   addToCart(productId: string, quantity: number = 1): Observable<any> {

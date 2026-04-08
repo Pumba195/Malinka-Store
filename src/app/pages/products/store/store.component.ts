@@ -35,25 +35,22 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.getProducts();
-      // if (this.authService.isLoggedIn()) {
-      //   this.productsService.loadFullFavorites();
-      // }
+      if (this.authService.isLoggedIn()) {
+        this.productsService.getFullFavorites();
+      }
     }
   }
 
   showToastNotification(message: string, error: boolean = false) {
-    if (error) {
-      this.isError = true;
-      this.toastMessage = message;
-      this.clickCount = 0;
+    this.isError = error;
+
+    if (error && this.showToast && this.toastMessage === message) {
+      this.clickCount++;
+    } else if(this.showToast && this.toastMessage === message){
+      this.clickCount++;
     } else {
-      this.isError = false;
-      if (this.showToast && this.toastMessage.includes(message)) {
-        this.clickCount++;
-      } else {
-        this.toastMessage = message;
-        this.clickCount = 1;
-      }
+      this.toastMessage = message;
+      this.clickCount = 1;
     }
 
     this.showToast = true;
@@ -86,21 +83,21 @@ export class StoreComponent implements OnInit {
     })
   }
 
-  addToCart(event: Event, productId: string) {
-    event.preventDefault();
+  addToCart(event: Event, product: any) {
     event.stopPropagation();
+    event.preventDefault();
 
     if (!this.authService.isLoggedIn()) {
-      this.showToastNotification('Please log in to add items!', true);
+      this.showToastNotification(`Please log in to add items to cart!`, true);
       return;
     }
 
-    this.cartService.addToCart(productId, 1).subscribe({
+    this.cartService.addToCart(product._id, 1).subscribe({
       next: () => {
-        this.showToastNotification('Added to Malinka cart! 🍓');
+        this.showToastNotification(`${product.title} added to cart! 🍓`);
       },
       error: () => {
-        this.showToastNotification('Something went wrong...', true);
+        this.showToastNotification(`Could not add items to cart!`, true);
       }
     });
   }
@@ -111,10 +108,25 @@ export class StoreComponent implements OnInit {
     })
   }
 
-  toggleLike(event: Event, productId: string) {
+  toggleLike(event: Event, product: any) { // Принимаем объект целиком
     event.preventDefault();
     event.stopPropagation();
-    event.stopImmediatePropagation();
+
+    const productId = product._id;
+    const productTitle = product.title;
+
+    if (!this.authService.isLoggedIn()) {
+      this.showToastNotification(`Please log in to like items!`, true);
+      return;
+    }
+
+    const isCurrentlyFavorite = this.productsService.isFavorite(productId);
     this.productsService.toggleFavorite(productId);
+
+    if (!isCurrentlyFavorite) {
+      this.showToastNotification(`Added ${productTitle} to Wishlist! ❤️`);
+    } else {
+      this.showToastNotification(`Removed ${productTitle} from Wishlist 💔`);
+    }
   }
 }

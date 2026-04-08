@@ -131,7 +131,8 @@ a {
 }
 
 .fa-heart:hover{
-    color: #f10020dc
+    color: #f10020dc;
+    filter: drop-shadow(0 0 5px rgba(241, 0, 32, 0.8));
 }
 
 

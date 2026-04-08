@@ -8,6 +8,7 @@
 
 .auth-card {
     background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
     padding: 20px 40px;
     border-radius: 20px;
     border: 1px solid #333;
@@ -28,6 +29,7 @@ h4{
     color: #ccc;
     font-size: 12px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 input {

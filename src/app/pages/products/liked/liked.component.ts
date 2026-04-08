@@ -11,11 +11,13 @@ import { isPlatformBrowser } from '@angular/common'
   templateUrl: './liked.component.html',
   styleUrl: './liked.component.css'
 })
+
 export class LikedComponent implements OnInit {
   private productsService = inject(ProductsService);
-  
   private platformId = inject(PLATFORM_ID);
-  items = this.productsService.favoriteItems;
+
+  public items = this.productsService.favoriteItems;
+  public isLoading = this.productsService.isLoading;
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {

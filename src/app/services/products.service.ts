@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,10 +10,11 @@ import { ProductItem } from '../models/product-item.model';
 
 export class ProductsService {
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   private apiURL = "http://localhost:3000";
   private favorites = signal<ProductItem[]>([]);
+  public isLoading = signal<boolean>(false);
 
   getAllProducts(): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/products`);
@@ -27,7 +28,7 @@ export class ProductsService {
       next: (updatedFavorites) => {
         this.favorites.set(updatedFavorites);
       },
-      error: (err) => console.error('Ошибка при переключении лайка:', err)
+      error: (err) => console.error('Error set like:', err)
     });
   }
 
@@ -36,18 +37,18 @@ export class ProductsService {
   }
 
   getFullFavorites() {
+    this.isLoading.set(true);
     this.http.get<ProductItem[]>(`${this.apiURL}/cart/favorites`).subscribe({
-      next: (data) => this.favorites.set(data),
-      error: (err) => console.error(err)
+      next: (data) => {
+        this.isLoading.set(false);
+        this.favorites.set(data);
+      },
+      error: (err) => {
+        this.isLoading.set(false);
+        console.error(err);
+      }
     });;
   }
-
-  // loadFullFavorites() {
-  //   this.http.get<string[]>(`${this.apiURL}/cart/favorites-ids`).subscribe({
-  //     next: (ids) => this.favorites.set(ids),
-  //     error: (err) => console.error('Could not load favorites', err)
-  //   });
-  // }
 
   clearFavorites() {
     this.favorites.set([]);

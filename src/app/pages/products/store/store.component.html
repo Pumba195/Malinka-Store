@@ -22,9 +22,10 @@
               <h3 class="product-title">{{product.title}}</h3>
               <p class="product-price">{{product.price | currency}}</p>
             </div>
-            <a class="favorite-badge" (click)="toggleLike($event, product._id)">
-              <p [class]="productsService.isFavorite(product._id) ? 'fas fa-heart' : 'far fa-heart'">{{
-                productsService.isFavorite(product._id) ? '♥' : '♡' }}</p>
+            <a class="favorite-badge" (click)="toggleLike($event, product)">
+              <p [class]="productsService.isFavorite(product._id) ? 'fas fa-heart' : 'far fa-heart'">
+                {{ productsService.isFavorite(product._id) ? '♥' : '♡' }}
+              </p>
             </a>
           </div>
 
@@ -32,7 +33,7 @@
           <!-- <div class="favorite-badge" (click)="toggleLike($event, product._id)">
             <i [class]="productsService.isFavorite(product._id) ? 'fas fa-heart' : 'far fa-heart'">Like</i>
           </div> -->
-          <button class="btn-cart" (click)="addToCart($event, product._id)">
+          <button class="btn-cart" (click)="addToCart($event, product)">
             Add to cart
           </button>
         </div>
@@ -40,12 +41,15 @@
     </div>
     }
   </div>
-  <div *ngIf="showToast" class="simple-toast" [class.error]="isError">
+  @if (showToast) {
+  <div class="simple-toast" [class.error]="isError">
     <span class="toast-icon">{{ isError ? '⚠️' : '🍓' }}</span>
-
     <span class="message-text">
       {{ toastMessage }}
-      <strong *ngIf="clickCount > 1" class="count-badge">x{{ clickCount }}</strong>
+      @if (clickCount > 1) {
+      <strong class="count-badge">x{{ clickCount }}</strong>
+      }
     </span>
   </div>
+  }
 </main>
