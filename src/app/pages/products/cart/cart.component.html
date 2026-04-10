@@ -16,7 +16,7 @@
     } @else if (!isLoading() && items().length === 0) {
     <div class="status-message guest-card">
       <p>Your cart is empty.</p>
-      <a routerLink="/store" class="store-link">Go to the store</a>
+      <button routerLink="/store" class="store-link btn">Go to the Store</button>
     </div>
     } @else {
 
@@ -53,7 +53,7 @@
         <span class="total-label">Total to pay:</span>
         <span class="total-price-value">{{ totalPrice() | currency }}</span>
       </div>
-      <button class="checkout-btn" (click)="onCheckout()">Proceed to Checkout</button>
+      <button class="checkout-btn btn" (click)="onCheckout()">Proceed to Checkout</button>
     </div>
     }
     }

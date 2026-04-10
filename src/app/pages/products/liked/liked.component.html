@@ -16,7 +16,7 @@
         } @else if (!isLoading() && items().length === 0) {
         <div class="status-message guest-card">
             <p>You haven't liked any items yet.</p>
-            <a routerLink="/store" class="store-link">Explore Store</a>
+            <button routerLink="/store" class="store-link btn">Explore Store</button>
         </div>
         } @else {
         @for (product of items(); track product) {

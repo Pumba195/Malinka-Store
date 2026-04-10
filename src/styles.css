@@ -4,3 +4,37 @@ body {
     margin: 0;
     min-height: 100vh;
 }
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    background: #242424;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-field:focus {
+    border-color: #f10020;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #f10020;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    box-shadow: 0 0 15px #f10020;
+    transform: translateY(-2px);
+}

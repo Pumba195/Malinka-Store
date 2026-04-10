@@ -5,34 +5,58 @@
       <p class="label">Get in touch with Malinka Team</p>
     </div>
 
-    <form class="contact-form">
-      <div class="form-group">
-        <p class="label">Your Name</p>
-        <input type="text" placeholder="Enter your name" class="contact-input">
-      </div>
+    @if (user()) {
+      <form class="contact-form">
+        <div class="form-group">
+          <p class="label">Your Name</p>
+          <input type="text" [value]="user()?.name || ''" class="contact-input readonly-input input-field" readonly>
+        </div>
 
-      <div class="form-group">
-        <p class="label">Your Email</p>
-        <input type="email" placeholder="Enter your email" class="contact-input">
-      </div>
+        <div class="form-group">
+          <p class="label">Your Email</p>
+          <input type="email" [value]="user()?.email || ''" class="contact-input readonly-input input-field" readonly>
+        </div>
 
-      <div class="form-group">
-        <p class="label">Message</p>
-        <textarea placeholder="How can we help?" rows="4" class="contact-input"></textarea>
-      </div>
+        <div class="form-group">
+          <p class="label">Subject</p>
+          <select class="contact-input select input-field">
+            <option value="order">Order Status</option>
+            <option value="delivery">Delivery Issues</option>
+            <option value="product">Product Question</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-      <button type="button" class="submit-btn">Send Message</button>
-    </form>
+        <div class="form-group">
+          <p class="label">Message</p>
+          <textarea placeholder="How can we help?" rows="4" class="contact-input input-field"></textarea>
+        </div>
+
+        <button type="button" class="submit-btn btn">Send Message</button>
+      </form>
+    } @else {
+      <div class="guest-notice">
+        <p>Please <a routerLink="/login">Login</a> to send us a direct message.</p>
+      </div>
+    }
 
     <div class="direct-contacts">
       <div class="contact-item">
-        <p class="contact-label">Support Email</p>
+        <p class="contact-label label">Support Email</p>
         <p class="contact-value">support&#64;malinka-store.com</p>
       </div>
       <div class="contact-item">
-        <p class="contact-label">Telegram</p>
+        <p class="contact-label label">Telegram</p>
         <p class="contact-value">&#64;malinka_support</p>
       </div>
+    </div>
+
+    <div class="faq-promo">
+      <div class="faq-text">
+        <h3>Have a quick question?</h3>
+        <p>Check our Help Center for instant answers.</p>
+      </div>
+      <button routerLink="/faq" class="faq-btn btn">Go to FAQ</button>
     </div>
   </div>
 </main>

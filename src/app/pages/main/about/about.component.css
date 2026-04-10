@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 70px 20px;
     color: #fff;
+    min-height: 90vh;
 }
 
 .about-header {
@@ -14,6 +15,7 @@
     font-size: 42px;
     margin-bottom: 10px;
     color: #1a1a1a;
+    font-weight: 500;
 }
 
 /* .about-header h1 span {

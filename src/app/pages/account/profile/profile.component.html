@@ -8,14 +8,12 @@
         <p class="email-value">{{ user().email }}</p>
       </div>
 
-      <button class="logout-btn" (click)="onLogout()">
-        <span class="icon">Logout</span>
-      </button>
+      <button class="logout-btn btn" (click)="onLogout()">Logout</button>
     </div>
   } @else {
     <div class="guest-card">
       <p>Please, log in to see your profile.</p>
-      <a routerLink="/login" class="login-link">Go to Login</a>
+      <button routerLink="/login" class="login-link btn">Go to Login</button>
     </div>
   }
 </main>

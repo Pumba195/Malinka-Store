@@ -1,6 +1,6 @@
 footer {
-    background-color: #f4f4f4;
-    border-top: 1px solid #ddd;
+    background-color: #1a1a1a;
+    border-top: 2px solid #f10020;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -14,14 +14,14 @@ nav ul {
 }
 nav a {
     text-decoration: none;
-    color: #1a1a1a;
+    color: #ddd;
     
     font-size: clamp(10px, 1vw, 20px);
     line-height: 2; 
     transition: color 0.3s;
 }
 nav a:hover {
-    color: #b4012b; 
+    color: #f10020; 
 }
 
 

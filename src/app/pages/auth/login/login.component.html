@@ -5,7 +5,7 @@
 
       <div class="form-group">
         <h4>Email</h4>
-        <input type="email" formControlName="email" placeholder="Enter your email">
+        <input class="input-field" type="email" formControlName="email" placeholder="Enter your email">
         @if (f.email.touched && f.email.errors) {
           <small class="error-text">
             @if (f.email.errors['required']) { Email is required }
@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <h4>Password</h4>
-        <input type="password" formControlName="password" placeholder="Enter your password">
+        <input class="input-field" type="password" formControlName="password" placeholder="Enter your password">
         @if (f.password.touched && f.password.errors) {
           <small class="error-text">
             @if (f.password.errors['required']) { Password is required }
@@ -34,7 +34,7 @@
         }
       </div>
 
-      <button type="submit">Login</button>
+      <button class="btn" type="submit">Login</button>
     </form>
 
     <p class="change-page">New here? <a [routerLink]="['/register']">Create account</a></p>

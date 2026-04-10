@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    padding: 100px 0 30px 0;
+    padding: 110px 20px 40px 20px;
 }
 
 .auth-card {
@@ -33,40 +33,11 @@ h4{
 }
 
 input {
-    width: 100%;
-    padding: 12px;
     margin: 10px 0;
-    background: #242424;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: white;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-    outline: none;
-    font-size: 14px;
 }
 
-input:focus {
-    border-color: #f10020;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #f10020;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+.btn {
     margin-top: 25px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    box-shadow: 0 0 15px #f10020;
-    transform: translateY(-2px);
 }
 
 /* button:disabled {

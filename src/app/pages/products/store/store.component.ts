@@ -27,6 +27,11 @@ export class StoreComponent implements OnInit {
   clickCount = 0;
   toastTimeout: any;
 
+  currentPage = 1;
+  currentLimit = 8;
+  searchQuery = '';
+  sortOrder = 'newest';
+
   products: any[] = [];
   errorMessage: string = "";
 
@@ -46,7 +51,7 @@ export class StoreComponent implements OnInit {
 
     if (error && this.showToast && this.toastMessage === message) {
       this.clickCount++;
-    } else if(this.showToast && this.toastMessage === message){
+    } else if (this.showToast && this.toastMessage === message) {
       this.clickCount++;
     } else {
       this.toastMessage = message;
@@ -129,4 +134,32 @@ export class StoreComponent implements OnInit {
       this.showToastNotification(`Removed ${productTitle} from Wishlist 💔`);
     }
   }
+
+  onSearch(event: any) {
+    this.searchQuery = event.target.value;
+    this.currentPage = 1; // Сброс на 1 страницу при поиске
+    this.loadProducts();
+  }
+
+  onSortChange(event: any) {
+    this.sortOrder = event.target.value;
+    this.loadProducts();
+  }
+
+  onLimitChange(event: any) {
+    this.currentLimit = Number(event.target.value);
+    this.currentPage = 1;
+    this.loadProducts();
+  }
+
+  changePage(step: number) {
+    this.currentPage += step;
+    this.loadProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Плавный скролл вверх
+  }
+
+  loadProducts() {
+    // this.productsService.getProducts(this.currentPage, this.currentLimit, this.searchQuery, this.sortOrder)
+  }
+
 }
