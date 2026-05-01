@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { ProductsService } from '../../../services/products.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private cartService = inject(CartService);
+  private toastService = inject(ToastService);
   private productsService = inject(ProductsService);
 
   protected errorMessage = '';
@@ -42,13 +44,14 @@ export class LoginComponent {
       this.loading = true;
 
       this.authService.login(this.loginForm.value).subscribe({
-        next: () => {
+        next: (res: any) => {
           this.loading = false;
 
           this.cartService.loadCart();
           this.productsService.getFullFavorites();
           
           this.router.navigate(['/profile']);
+          this.toastService.show('Successful Login', 'You are login as ' + res.user.name, 'auth')
         },
         error: (err) => {
           this.loading = false;

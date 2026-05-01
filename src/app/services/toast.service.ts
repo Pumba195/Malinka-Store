@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export type ToastType = 'success' | 'error' | 'cart' | 'wishlist';
+export type ToastType = 'success' | 'error' | 'cart' | 'wishlist' | 'auth';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
@@ -20,7 +20,8 @@ export class ToastService {
       success: '🍓',
       error: '⚠️',
       cart: '🛒',
-      wishlist: '❤️'
+      wishlist: '❤️',
+      auth: '👤'
     };
 
     const isSameToast = this.messageTitle === title && this.toastMessage === message;
@@ -41,6 +42,7 @@ export class ToastService {
     this.currentIcon = iconMap[type];
     this.messageTitle = title;
     this.toastMessage = message;
+    this.showToast = true;
 
     if (isSame) {
       this.clickCount += quantity;
@@ -48,13 +50,12 @@ export class ToastService {
       setTimeout(() => this.animateCounter = true, 5);
     } else {
       this.clickCount = quantity;
-      this.showToast = true;
     }
 
     if (this.toastTimeout) clearTimeout(this.toastTimeout);
     this.toastTimeout = setTimeout(() => {
       this.showToast = false;
       this.clickCount = 0;
-    }, 3000);
+    }, 5000);
   }
 }

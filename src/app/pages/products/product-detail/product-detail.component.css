@@ -214,7 +214,6 @@
     margin-bottom: 10px;
 }
 
-/* Адаптивность */
 @media (max-width: 900px) {
     .product-wrapper {
         grid-template-columns: 1fr;

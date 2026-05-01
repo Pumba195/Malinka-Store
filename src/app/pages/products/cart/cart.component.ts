@@ -28,7 +28,9 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.cartService.loadCart();
+      if (!!localStorage.getItem('token')) {
+        this.cartService.loadCart();
+      }
     }
   }
 

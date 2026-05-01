@@ -26,7 +26,9 @@ export class LikedComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.productsService.getFullFavorites();
+      if (!!localStorage.getItem('token')) {
+        this.productsService.getFullFavorites();
+      } 
     }
   }
 

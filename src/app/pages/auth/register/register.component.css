@@ -18,12 +18,12 @@
     text-align: center;
 }
 
-h1{
+h1 {
     font-weight: 700;
     margin: 22px 0;
 }
 
-h4{
+h4 {
     margin: 0 0 0 5px;
     font-weight: 400;
     color: #ccc;
@@ -71,26 +71,9 @@ input.ng-invalid.ng-touched {
     border-color: #ff4d4d;
 }
 
-.status img{
+.status img {
     height: 60px;
     width: auto;
-}
-
-.change-page {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #ddd;
-}
-
-.change-page a {
-    color: #f10020;
-    text-decoration: none;
-    font-weight: 600;
-    margin-left: 4px;
-}
-
-.change-page a:hover {
-    text-decoration: underline;
 }
 
 .change-page {
@@ -98,36 +81,55 @@ input.ng-invalid.ng-touched {
     padding-top: 20px;
     border-top: 1px solid #333;
     display: flex;
-    justify-content: center;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.footer-link {
+    flex: 1;
+    text-align: center;
+
+    color: #f10020;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.footer-link:not(:last-child) {
+    border-right: 1px solid #333;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
 }
 
 .password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .password-wrapper .input-field {
-  padding-right: 45px;
+    padding-right: 45px;
 }
 
 .toggle-btn {
-  position: absolute;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  transition: all 0.3s ease;
-  outline: none;
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition: all 0.3s ease;
+    outline: none;
 }
 
-.toggle-btn .eye{
-  height: 20px;
-  filter: brightness(0) invert(0.9);
+.toggle-btn .eye {
+    height: 20px;
+    filter: brightness(0) invert(0.9);
 }
 
 .toggle-btn:hover {

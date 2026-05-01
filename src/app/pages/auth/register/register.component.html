@@ -46,6 +46,36 @@
           @if (f.password.errors['minlength']) { Minimum 6 characters }
         </small>
         }
+
+        @if (registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+        <small class="error-text">Passwords do not match</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <h4>Confirm password</h4>
+        <div class="password-wrapper">
+          <input class="input-field" [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword" placeholder="Enter your password" autocomplete="current-password">
+
+          <button type="button" class="toggle-btn" (click)="toggleConfirmPassword()">
+            @if (showConfirmPassword) {
+            <img src="./icons/eye-crossed.png" class="eye" alt="Cart">
+            } @else {
+            <img src="./icons/eye.png" class="eye" alt="Cart">
+            }
+          </button>
+        </div>
+
+        @if (f.confirmPassword.touched && f.confirmPassword.errors) {
+        <small class="error-text">
+          @if (f.confirmPassword.errors['required']) { Confirm password is required }
+        </small>
+        }
+
+        @if (registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+        <small class="error-text">Passwords do not match</small>
+        }
       </div>
 
       <div class="status">
@@ -60,6 +90,11 @@
       <button class="btn" type="submit">Create account</button>
     </form>
 
-    <p class="change-page">Have account? <a [routerLink]="['/login']">Login</a></p>
+    
+    <div class="change-page">
+      <a class="footer-link" [routerLink]="['/verify-email']">Confirm email</a>
+      <a class="footer-link" [routerLink]="['/login']">Sign in account</a>
+      <!-- <p class="change-page">Have account? <a [routerLink]="['/login']">Login</a></p> -->
+    </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ import { UserOrdersComponent } from './pages/account/user-orders/user-orders.com
 import { ProfileSettingsComponent } from './pages/account/profile-settings/profile-settings.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ export const routes: Routes = [
     
     { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
     { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
-
+    { path: 'verify-email', component: VerifyEmailComponent, canActivate: [guestGuard] },
+    
     { 
         path: 'profile', 
         component: ProfileComponent, 

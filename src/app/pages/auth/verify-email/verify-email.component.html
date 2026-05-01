@@ -1,0 +1,65 @@
+<div class="verify-container">
+  <div class="verify-card">
+    @if (!isChangingEmail) {
+    <!-- Main Verification Screen -->
+    <h1>Confirm Email</h1>
+
+    <div class="verify-info">
+      <p>We sent a 6-digit code to:</p>
+      <p class="verify-info-email"><strong>{{ email }}</strong></p>
+    </div>
+
+    <div class="verify-group">
+      <h4>Verification Code</h4>
+      <input class="input-field" type="text" [(ngModel)]="code" placeholder="000000" maxlength="6"
+        (keyup.enter)="onVerify()">
+    </div>
+
+    @if (errorMessage) {
+    <p class="verify-error">{{ errorMessage }}</p>
+    }
+
+    <div class="verify-actions">
+      <button class="btn" (click)="onVerify()" [disabled]="code.length < 6">
+        Confirm Code
+      </button>
+
+      <div class="verify-footer">
+        <a (click)="resendCode()" class="verify-link">Resend Code</a>
+        <a (click)="toggleChangeEmailView()" class="verify-link">Change Email</a>
+        <a [routerLink]="['/register']" class="verify-link">Register</a>
+      </div>
+    </div>
+    }
+    @else {
+    <!-- Change/Enter Email Screen -->
+    <h1>Enter Email</h1>
+
+    <div class="verify-info">
+      <p>Please enter your email to receive the verification code.</p>
+    </div>
+    
+    <div class="verify-group">
+      <h4>Email</h4>
+      <input class="input-field" type="email" [(ngModel)]="newEmail" placeholder="example@mail.com">
+    </div>
+
+    @if (errorMessage) {
+    <p class="verify-error">{{ errorMessage }}</p>
+    }
+
+    <div class="verify-actions">
+      <button class="btn" (click)="confirmEmailChange()">
+        Send Verification Code
+      </button>
+
+      <div class="verify-footer">
+        @if (canGoBack) {
+        <a (click)="toggleChangeEmailView()" class="verify-link">Back to verification</a>
+        }
+        <a [routerLink]="['/register']" class="verify-link">Register</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

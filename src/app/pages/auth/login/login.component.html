@@ -48,7 +48,10 @@
 
       <button class="btn" type="submit">Login</button>
     </form>
-
-    <p class="change-page">New here? <a [routerLink]="['/register']">Create account</a></p>
+    <div class="change-page">
+      <a class="footer-link" [routerLink]="['/verify-email']">Confirm email</a>
+      <a class="footer-link" [routerLink]="['/register']">Create account</a>
+      <!-- <p class="footer-link">New here? <a [routerLink]="['/register']">Create account</a></p> -->
+    </div>
   </div>
 </div>

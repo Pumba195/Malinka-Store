@@ -1,4 +1,4 @@
-.auth-container {
+.verify-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     padding: 110px 20px 40px 20px;
 }
 
-.auth-card {
+.verify-card {
     background: #1a1a1a;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
     padding: 20px 40px;
@@ -32,51 +32,49 @@ h4 {
     letter-spacing: 1px;
 }
 
-input {
-    margin: 10px 0;
+.verify-info {
+    margin: 0 0 22px 0;
 }
 
-.btn {
-    margin-top: 25px;
+.verify-info p{
+    color: #ddd;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
 }
 
-/* button:disabled {
-    opacity: 0.5;
-} */
+.verify-info-email strong {
+    color: #f10020;
+}
 
-.form-group {
-    margin-bottom: 15px;
+.verify-group {
     text-align: left;
 }
 
-.error-text {
-    color: #ff4d4d;
-    font-size: 12px;
-    display: block;
-    margin-top: -5px;
-    margin-left: 5px;
+input {
+    margin: 10px 0 0 0;
 }
 
-.server-error {
+.btn {
+    margin-top: 22px;
+}
+
+.verify-error {
     background: rgba(255, 0, 0, 0.2);
     border: 1px solid #ff4d4d;
     padding: 10px;
     border-radius: 8px;
     color: white;
     font-size: 14px;
-    margin: 0;
+    margin: 22px 0 0 0;
 }
 
-input.ng-invalid.ng-touched {
-    border-color: #ff4d4d;
+.verify-actions {
+    display: flex;
+    flex-direction: column;
 }
 
-.status img {
-    height: 60px;
-    width: auto;
-}
-
-.change-page {
+.verify-footer {
     margin: 40px 0 22px 0;
     padding-top: 20px;
     border-top: 1px solid #333;
@@ -85,7 +83,7 @@ input.ng-invalid.ng-touched {
     color: #ddd;
 }
 
-.footer-link {
+.verify-link {
     flex: 1;
     text-align: center;
 
@@ -95,44 +93,15 @@ input.ng-invalid.ng-touched {
     cursor: pointer;
 }
 
-.footer-link:not(:last-child) {
+.verify-link:not(:last-child) {
     border-right: 1px solid #333;
 }
 
-.footer-link:hover {
+.verify-link:hover {
     text-decoration: underline;
 }
 
-.password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.password-wrapper .input-field {
-    padding-right: 45px;
-}
-
-.toggle-btn {
-    position: absolute;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    transition: all 0.3s ease;
-    outline: none;
-}
-
-.toggle-btn .eye {
-    height: 20px;
-    filter: brightness(0) invert(0.9);
-}
-
-.toggle-btn:hover {
-    filter: drop-shadow(0 0 5px #ff0022);
-    transform: translateY(-1px);
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

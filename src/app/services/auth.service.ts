@@ -6,7 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root' 
+  providedIn: 'root'
 })
 
 export class AuthService {
@@ -21,10 +21,14 @@ export class AuthService {
       return null;
     }
     const userJson = localStorage.getItem('user');
+    if (!userJson || userJson === 'undefined') {
+      return null;
+    }
+
     return userJson ? JSON.parse(userJson) : null;
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   register(userData: any) {
     return this.http.post(`${this.apiUrl}/register`, userData).pipe(
@@ -33,7 +37,7 @@ export class AuthService {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
         }
-        
+
         this.currentUser.set(res.user);
       })
     );
@@ -51,7 +55,7 @@ export class AuthService {
       })
     );
   }
-  
+
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
@@ -63,5 +67,32 @@ export class AuthService {
     }
     this.currentUser.set(null);
     this.router.navigate(['/login']);
+  }
+
+  verifyEmail(email: string, code: string) {
+    return this.http.post<any>(`${this.apiUrl}/verify`, { email, code }).pipe(
+      tap((res: any) => {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res.user));
+        }
+        this.currentUser.set(res.user);
+      })
+    );
+  }
+
+  resendCode(email: string) {
+    return this.http.post(`${this.apiUrl}/resend-code`, { email });
+  }
+
+  openVerifyEmailPage(email?: string) {
+    if (isPlatformBrowser(this.platformId) && email) {
+      localStorage.setItem('email', email);
+    }
+    this.router.navigate(['/verify-email']);
+  }
+
+  checkUserStatus(email: string) {
+    return this.http.post(`${this.apiUrl}/check-status`, { email });
   }
 }
