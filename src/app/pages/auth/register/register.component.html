@@ -10,6 +10,7 @@
         <small class="error-text">
           @if (f.name.errors['required']) { Name is required }
           @if (f.name.errors['minlength']) { Minimum 2 characters }
+          @if (f.name.errors['maxlength']) { Maximum 40 characters }
         </small>
         }
       </div>

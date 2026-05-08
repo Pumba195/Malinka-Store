@@ -11,9 +11,9 @@ import { ToastService } from '../../../services/toast.service';
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');
-  
-  return password && confirmPassword && password.value !== confirmPassword.value 
-    ? { passwordMismatch: true } 
+
+  return password && confirmPassword && password.value !== confirmPassword.value
+    ? { passwordMismatch: true }
     : null;
 };
 
@@ -39,7 +39,7 @@ export class RegisterComponent {
   protected showConfirmPassword = false;
 
   registerForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required]]

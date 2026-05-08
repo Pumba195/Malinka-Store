@@ -172,7 +172,7 @@ export class StoreComponent implements OnInit {
       this.toastService.show('Error', `Please log in to add items to Wishlist!`, 'error');
       return;
     }
-
+    
     const isCurrentlyFavorite = this.productsService.isFavorite(productId);
     this.productsService.toggleFavorite(productId);
 

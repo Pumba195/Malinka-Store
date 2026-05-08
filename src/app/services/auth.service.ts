@@ -31,16 +31,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   register(userData: any) {
-    return this.http.post(`${this.apiUrl}/register`, userData).pipe(
-      tap((res: any) => {
-        if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('user', JSON.stringify(res.user));
-        }
-
-        this.currentUser.set(res.user);
-      })
-    );
+    return this.http.post(`${this.apiUrl}/register`, userData)
   }
 
   login(credentials: any) {
@@ -64,6 +55,8 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('pendingEmail');
+      localStorage.removeItem('email');
     }
     this.currentUser.set(null);
     this.router.navigate(['/login']);
@@ -94,5 +87,47 @@ export class AuthService {
 
   checkUserStatus(email: string) {
     return this.http.post(`${this.apiUrl}/check-status`, { email });
+  }
+
+  updateName(newName: string) {
+    return this.http.post(`${this.apiUrl}/update-name`, { name: newName }).pipe(
+      tap((user: any) => {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+        this.currentUser.set(user);
+      })
+    );
+  }
+
+  requestEmailChange(newEmail: string) {
+    return this.http.post(`${this.apiUrl}/request-email-change`, { newEmail });
+  }
+
+  resendEmailChangeCode() {
+    return this.http.post(`${this.apiUrl}/resend-email-change-code`, {});
+  }
+
+  verifyEmailChange(code: string) {
+    return this.http.post<any>(`${this.apiUrl}/verify-email-change`, { code }).pipe(
+      tap((user: any) => {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+        this.currentUser.set(user);
+      })
+    );
+  }
+
+  changePassword(changeData: any) {
+    return this.http.post(`${this.apiUrl}/change-password`, changeData);
+  }
+
+  requestPasswordReset() {
+    return this.http.post(`${this.apiUrl}/request-password-reset`, {});
+  }
+
+  resetPassword(resetData: any) {
+    return this.http.post(`${this.apiUrl}/reset-password`, resetData);
   }
 }
