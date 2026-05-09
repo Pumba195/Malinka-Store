@@ -15,12 +15,12 @@
     font-size: 42px;
     margin-bottom: 10px;
     color: #1a1a1a;
-    font-weight: 500;
+    font-weight: 400;
 }
 
-/* .about-header h1 span {
-    color: #f10020;
-} */
+.about-header h1 span {
+    font-weight: 700;
+}
 
 .subtitle {
     color: #888;

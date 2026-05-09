@@ -1,4 +1,4 @@
-.auth-container {
+.verify-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,10 +6,10 @@
     padding: 110px 20px 40px 20px;
 }
 
-.auth-card {
+.verify-card {
     background: #1a1a1a;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-    padding: 20px 40px;
+    padding: 2cap 40px;
     border-radius: 20px;
     border: 1px solid #333;
     width: 100%;
@@ -20,10 +20,36 @@
 
 h1 {
     font-weight: 700;
-    margin: 22px 0;
+    margin: 22px 0 22px 0;
 }
 
-h4 {
+h1 span {
+    color: #f10020;
+}
+
+.verify-info {
+    margin-bottom: 25px;
+}
+
+.verify-info p {
+    color: #ccc;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.verify-email-text {
+    color: #f10020 !important;
+    font-size: 16px !important;
+    word-break: break-all;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group h4 {
     margin: 0 0 0 5px;
     font-weight: 400;
     color: #ccc;
@@ -32,29 +58,8 @@ h4 {
     letter-spacing: 1px;
 }
 
-input {
+.input-field {
     margin: 10px 0;
-}
-
-.btn {
-    margin-top: 25px;
-}
-
-/* button:disabled {
-    opacity: 0.5;
-} */
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.error-text {
-    color: #ff4d4d;
-    font-size: 12px;
-    display: block;
-    margin-top: -5px;
-    margin-left: 5px;
 }
 
 .server-error {
@@ -67,13 +72,20 @@ input {
     margin: 0;
 }
 
-input.ng-invalid.ng-touched {
-    border-color: #ff4d4d;
+.status {
+    margin-top: 15px;
 }
 
 .status img {
     height: 60px;
     width: auto;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
 }
 
 .change-page {
@@ -82,57 +94,40 @@ input.ng-invalid.ng-touched {
     border-top: 1px solid #333;
     display: flex;
     font-size: 14px;
-    color: #ddd;
 }
 
 .footer-link {
     flex: 1;
     text-align: center;
-
     color: #f10020;
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.footer-link.disabled {
+    color: #888;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .footer-link:not(:last-child) {
     border-right: 1px solid #333;
 }
 
-.footer-link:hover {
+.footer-link:not(.disabled):hover {
     text-decoration: underline;
 }
 
-.password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
+@media (max-width: 480px) {
+    .verify-card {
+        padding: 30px 20px;
+    }
 
-.password-wrapper .input-field {
-    padding-right: 45px;
-}
-
-.toggle-btn {
-    position: absolute;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    transition: all 0.3s ease;
-    outline: none;
-}
-
-.toggle-btn .eye {
-    height: 20px;
-    filter: brightness(0) invert(0.9);
-}
-
-.toggle-btn:hover {
-    filter: drop-shadow(0 0 5px #ff0022);
-    transform: translateY(-1px);
+    .change-page {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
 }

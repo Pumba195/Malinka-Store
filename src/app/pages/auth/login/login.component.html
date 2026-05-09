@@ -5,38 +5,53 @@
 
       <div class="form-group">
         <h4>Email</h4>
-        <input class="input-field" type="email" formControlName="email" placeholder="Enter your email">
+        <input #autofocus class="input-field" type="email" formControlName="email" placeholder="Enter your email">
         @if (f.email.touched && f.email.errors) {
-          <small class="error-text">
-            @if (f.email.errors['required']) { Email is required }
-            @if (f.email.errors['email']) { Please enter a valid email }
-          </small>
+        <small class="error-text">
+          @if (f.email.errors['required']) { Email is required }
+          @if (f.email.errors['email']) { Please enter a valid email }
+        </small>
         }
       </div>
 
       <div class="form-group">
         <h4>Password</h4>
-        <input class="input-field" type="password" formControlName="password" placeholder="Enter your password">
+        <div class="password-wrapper">
+          <input class="input-field" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+            placeholder="Enter your password" autocomplete="current-password">
+
+          <button type="button" class="toggle-btn" (click)="togglePassword()">
+            @if (showPassword) {
+            <img src="./icons/eye-crossed.png" class="eye" alt="Cart">
+            } @else {
+            <img src="./icons/eye.png" class="eye" alt="Cart">
+            }
+          </button>
+        </div>
+
         @if (f.password.touched && f.password.errors) {
-          <small class="error-text">
-            @if (f.password.errors['required']) { Password is required }
-            @if (f.password.errors['minlength']) { Minimum 6 characters }
-          </small>
+        <small class="error-text">
+          @if (f.password.errors['required']) { Password is required }
+          @if (f.password.errors['minlength']) { Minimum 6 characters }
+        </small>
         }
       </div>
 
       <div class="status">
         @if (errorMessage) {
-          <p class="server-error">{{ errorMessage }}</p>
+        <p class="server-error">{{ errorMessage }}</p>
         }
         @if (loading) {
-          <img src="./icons/loading.gif" alt="loading">
+        <img src="./icons/loading.gif" alt="loading">
         }
       </div>
 
       <button class="btn" type="submit">Login</button>
     </form>
-
-    <p class="change-page">New here? <a [routerLink]="['/register']">Create account</a></p>
+    <div class="change-page">
+      <a class="footer-link" [routerLink]="['/verify-email']">Confirm email</a>
+      <a class="footer-link" [routerLink]="['/register']">Create account</a>
+      <!-- <p class="footer-link">New here? <a [routerLink]="['/register']">Create account</a></p> -->
+    </div>
   </div>
 </div>

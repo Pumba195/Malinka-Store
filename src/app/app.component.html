@@ -14,7 +14,7 @@
     </div>
 
     @if (toast.clickCount > 1) {
-    <span class="count-badge">x{{ toast.clickCount }}</span>
+    <span class="count-badge" [class.pulse]="toast.animateCounter">x{{ toast.clickCount }}</span>
     }
 </div>
 }

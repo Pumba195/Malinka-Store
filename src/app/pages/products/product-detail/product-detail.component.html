@@ -1,34 +1,119 @@
 <main class="product-page">
   @if (product) {
     <div class="product-wrapper">
+      
       <div class="product-media">
         <div class="image-holder">
-          <img [src]="product.imageUrl || 'assets/no-image.png'" alt="{{product.title}}">
+          <img [src]="product.imageUrl || 'assets/no-image.png'" [alt]="product.title">
         </div>
       </div>
+
       <div class="product-details">
         <div class="meta">
-          <span class="category">{{product.category}}</span>
-          <span class="stock-status">In Stock</span>
+          <span class="category">{{ product.category }}</span>
+          @if (product.stock && product.stock > 0) {
+            <span class="stock-status">In Stock ({{ product.stock }})</span>
+          } @else if (product.stock === 0) {
+            <span class="stock-status out-of-stock">Out of Stock</span>
+          }
         </div>
-        <h1 class="product-title">{{product.title}}</h1>
+
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        @if (product.brand) {
+          <h2 class="brand-name">Brand: {{ product.brand }}</h2>
+        }
+
+        <div class="rating-area">
+          <span class="stars">⭐ {{ product.stars || 5 }} / 5</span>
+        </div>
+
         <div class="price-tag">
-          <span class="amount">{{product.price | currency}}</span>
+          <span class="amount">{{ product.price | currency }}</span>
         </div>
-        <div class="description">
-          <p>{{product.content || 'Premium quality handcrafted item from our latest collection.'}}</p>
+
+        @if (product.description) {
+          <div class="description">
+            <p>{{ product.description }}</p>
+          </div>
+        }
+
+        <div class="specs">
+          @if (product.colors && product.colors.length > 0) {
+            <div class="spec-group">
+              <strong>Colors:</strong>
+              <div class="badges">
+                @for (color of product.colors; track color) {
+                  <span class="badge">{{ color }}</span>
+                }
+              </div>
+            </div>
+          }
+
+          @if (product.sizes && product.sizes.length > 0) {
+            <div class="spec-group">
+              <strong>Sizes:</strong>
+              <div class="badges">
+                @for (size of product.sizes; track size) {
+                  <span class="badge">{{ size }}</span>
+                }
+              </div>
+            </div>
+          }
+
+          @if (product.material) {
+            <p><strong>Material:</strong> {{ product.material }}</p>
+          }
+          
+          @if (product.weight) {
+            <p><strong>Weight:</strong> {{ product.weight }} kg</p>
+          }
         </div>
+
         <div class="action-area">
           <button class="gts-button">Add to cart</button>
           <button class="wishlist-btn">♡</button>
         </div>
-        <div class="features-minimal">
-          <div class="f-item"><span>✓</span> Free Shipping</div>
-          <div class="f-item"><span>✓</span> 14 Days Return</div>
+
+        @if (product.tags && product.tags.length > 0) {
+          <div class="tags">
+            @for (tag of product.tags; track tag) {
+              <span class="tag">#{{ tag }}</span>
+            }
+          </div>
+        }
+
+        <div class="technical-info">
+          <small>Product ID: {{ product._id }}</small>
+          <br>
+          <small>Created: {{ product.createdAt | date:'medium' }}</small>
+          @if (product.updatedAt) {
+            <br>
+            <small>Last Update: {{ product.updatedAt | date:'medium' }}</small>
+          }
         </div>
+
         <a [routerLink]="['/store']" class="back-btn">← Back to collection</a>
       </div>
     </div>
+
+    @if (product.reviews && product.reviews.length > 0) {
+      <section class="reviews-section">
+        <h3>Customer Reviews ({{ product.reviews.length }})</h3>
+        <div class="reviews-grid">
+          @for (review of product.reviews; track review.date) {
+            <div class="review-card">
+              <div class="review-header">
+                <strong>{{ review.user }}</strong>
+                <span>⭐ {{ review.rating }}</span>
+              </div>
+              <p>{{ review.comment }}</p>
+              <small>{{ review.date | date }}</small>
+            </div>
+          }
+        </div>
+      </section>
+    }
   }
 
   @if (!product) {

@@ -109,19 +109,23 @@ header::before {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     opacity: 1;
 
     /* padding: 20px 20px;
     height: 100%; */
 }
 
+/* .central-menu.trans-none a{
+    transition: none;
+} */
+ 
 .central-menu li a.active-link {
     color: #f10020;
     text-shadow: 0 0 10px #f10020;
 }
 
-.central-menu li a:hover{
+.central-menu li a:hover {
     color: #f10020;
 }
 

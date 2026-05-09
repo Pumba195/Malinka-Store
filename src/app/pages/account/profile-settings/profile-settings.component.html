@@ -1,1 +1,126 @@
-<p>profile-settings works!</p>
+<div class="settings-container">
+  <div class="settings-wide">
+    <div class="settings-info">
+      <h1>Profile <span>Settings</span></h1>
+      <p class="subtitle-label">Manage your personal information and security</p>
+    </div>
+
+    <div class="settings-content">
+      <div class="info-section">
+
+        <!-- Full Name Info Item -->
+        <div class="info-item">
+          <div class="info-label">Full Name</div>
+          <div class="info-value">
+            @if (user()?.name) {
+            {{ user()?.name }}
+            } @else {
+            No name provided
+            }
+          </div>
+          <div class="info-action">
+            <button (click)="openModal('name')" class="edit-btn">Change</button>
+          </div>
+        </div>
+
+        <!-- Email Address Info Item -->
+        <div class="info-item">
+          <div class="info-label">Email Address</div>
+          <div class="info-value">
+            @if (user()?.email) {
+            {{ user()?.email }}
+            } @else {
+            No email provided
+            }
+          </div>
+          <div class="info-action">
+            <button (click)="openModal('email')" class="edit-btn">Change</button>
+          </div>
+        </div>
+
+        <!-- Security Info Item -->
+        <div class="info-item">
+          <div class="info-label">Security</div>
+          <div class="info-value">••••••••••••</div>
+          <div class="info-action">
+            <button (click)="onChangePasswordNavigation()" class="edit-btn">Change</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="settings-footer">
+      <a routerLink="/profile" class="back-link">← Back to Profile</a>
+    </div>
+  </div>
+
+  <!-- Modal Overlays -->
+  @if (activeModal() !== null) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+
+      <!-- Name Change Modal -->
+      @if (activeModal() === 'name') {
+      <h2>Change <span>Name</span></h2>
+
+      <div class="form-group">
+        <h4>New Name</h4>
+        <input type="text" #autofocus [(ngModel)]="newName" class="input-field" placeholder="Enter new name">
+      </div>
+
+      @if (modalError() !== '') {
+        <p class="error-text">{{ modalError() }}</p>
+      }
+
+      <div class="status">
+        @if (errorMessage) {
+          <p class="server-error">{{ errorMessage }}</p>
+        }
+        @if (loading) {
+          <img src="./icons/loading.gif" alt="loading">
+        }
+      </div>
+
+      <div class="modal-actions">
+        <button (click)="closeModal()" class="cancel-btn btn">Cancel</button>
+        <button (click)="onSaveName()" class="btn save-btn" [disabled]="loading">
+          Save Changes
+        </button>
+      </div>
+      }
+
+      <!-- Email Change Modal -->
+      @if (activeModal() === 'email') {
+      <h2>Change <span>Email</span></h2>
+
+      <div class="form-group">
+        <h4>New Email</h4>
+        <input type="email" #autofocus [(ngModel)]="newEmail" class="input-field" placeholder="Enter new email">
+      </div>
+
+      @if (modalError() !== '') {
+        <p class="error-text">{{ modalError() }}</p>
+      }
+
+      <div class="status">
+        @if (errorMessage) {
+          <p class="server-error">{{ errorMessage }}</p>
+        }
+        @if (loading) {
+          <img src="./icons/loading.gif" alt="loading">
+        }
+      </div>
+
+      <div class="modal-actions">
+        <button (click)="closeModal()" class="cancel-btn btn">Cancel</button>
+        <button (click)="onSaveEmail()" class="btn save-btn" [disabled]="loading">
+          Save Changes
+        </button>
+      </div>
+      }
+
+    </div>
+  </div>
+  }
+</div>

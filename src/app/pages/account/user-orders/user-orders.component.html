@@ -1,1 +1,27 @@
-<p>user-orders works!</p>
+<div class="orders-container">
+  <div class="orders-wide">
+    <div class="orders-info">
+      <h1>Your <span>Orders</span></h1>
+      <p class="subtitle-label">Manage and track your recent purchases</p>
+    </div>
+
+    <div class="orders-content">
+      @if (orders.length === 0) {
+        <div class="status-message">
+          <div class="empty-icon">📦</div>
+          <h2>No orders yet</h2>
+          <p>You haven't placed any orders yet. Start shopping to see your orders here!</p>
+          <button routerLink="/store" class="btn">Go to Store</button>
+        </div>
+      } @else {
+        <div class="orders-list">
+          <!-- Order items would go here -->
+        </div>
+      }
+    </div>
+
+    <div class="orders-footer">
+      <a routerLink="/profile" class="back-link">← Back to Profile</a>
+    </div>
+  </div>
+</div>

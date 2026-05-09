@@ -183,7 +183,7 @@
     font-size: 1.1rem;
 }
 
-.loading img { 
+.loading img {
     height: 60px;
     text-align: center;
 }
@@ -211,13 +211,134 @@
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .item-actions {
         width: 100%;
         justify-content: space-between;
     }
-    
+
     .cart-wide {
         padding: 20px;
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-content .product-image {
+    width: 100%;
+    height: 250px;
+    margin: 0 auto 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #242424;
+    border: 1px solid #333;
+    transition: all 0.3s;
+}
+
+.modal-content .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-content .product-image:hover {
+    transform: translateY(-2px);
+}
+
+.modal-content h3 {
+    margin: 0 0 24px 0;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.modal-content p {
+    color: #ccc;
+    margin: 24px 0;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-cancel,
+.btn-confirm {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-cancel {
+    background: #333;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px #444;
+}
+
+.modal-content a {
+    text-decoration: none;
+    color: #f10020;
+    font-weight: bold;
+}
+
+.modal-content a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

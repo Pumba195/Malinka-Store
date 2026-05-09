@@ -135,7 +135,7 @@ a {
 }
 
 .fa-heart:hover {
-    filter: drop-shadow(0 0 12px rgb(255, 255, 255));
+    filter: drop-shadow(0 0 12px rgb(255, 0, 0));
 }
 
 
@@ -286,8 +286,9 @@ select.select-input {
     color: #f10020;
 }
 
-select.select-input:focus-within {
-    color: #f10020;
+.input-wrapper:focus-within .input-field {
+    /* color: #f10020; */
+    border-color: #f10020;
 }
 
 .shop-toolbar .pagination {
@@ -295,7 +296,7 @@ select.select-input:focus-within {
     padding: 0;
 }
 
-.shop-toolbar .pagination button{
+.shop-toolbar .pagination button {
     background: #1a1a1a;
     height: 44px;
 }

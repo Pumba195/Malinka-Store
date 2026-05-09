@@ -3,13 +3,14 @@
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    padding: 100px 0 30px 0;
+    padding: 110px 20px 40px 20px;
 }
 
-.profile-card, .guest-card{
+.profile-card,
+.guest-card {
     background: #1a1a1a;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-    padding: 40px 20px;
+    padding: 40px 40px;
     border-radius: 20px;
     border: 1px solid #333;
     width: 100%;
@@ -27,17 +28,20 @@
     border-radius: 50%;
     margin-bottom: 20px;
 } */
-
-.user-info h1 {
-    font-size: 24px;
-    margin: 0 0 28px 0;
+.user-info {
+    margin: 60px 0;
 }
 
-.user-info h1 span {
+.profile-card h1 {
+    margin: 0 0 22px 0;
+    font-weight: 700;
+}
+
+.profile-card span {
     color: #f10020;
 }
 
-.email-label {
+.label {
     color: #ccc;
     font-size: 12px;
     text-transform: uppercase;
@@ -45,15 +49,49 @@
     letter-spacing: 1px;
 }
 
-.email-value {
+.value {
     margin: 0 0 28px 0;
     font-size: 16px;
     color: #eee;
 }
 
-.btn{
-    padding: 10px 60px;
-    width: auto;
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings-btn {
+    background: #242424;
+    color: white;
+    border: 1px solid #444;
+}
+
+.settings-btn:hover {
+    background: #333;
+    border-color: #666;
+    box-shadow: 0 0 15px #666;
+}
+
+.orders-btn {
+    background: #f10020;
+    color: white;
+    border: none;
+}
+
+.orders-btn:hover {
+    background: #d4001c;
+}
+
+.logout-btn {
+    background: transparent;
+    color: #f10020;
+    border: 1px solid #f10020;
+}
+
+.logout-btn:hover {
+    background: #f10020;
+    color: white;
 }
 
 .guest-card {
@@ -62,4 +100,9 @@
 
 .login-link {
     margin-top: 10px;
+}
+
+.buttons-flex {
+    display: flex;
+    gap: 10px;
 }

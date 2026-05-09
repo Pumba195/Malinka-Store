@@ -1,59 +1,76 @@
-# Malinka
+# Malinka 🍓 — Online Store
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.22.
+**Malinka** is a modern e-commerce web application built with Angular 19. It provides a complete user interface for browsing products, managing a shopping cart, maintaining a wishlist, and accessing a personal user account.
 
-## Development server
+## 🚀 Tech Stack
 
-To start a local development server, run:
+- **Framework:** [Angular 19](https://angular.io/)
+- **Rendering:** SSR (Server-Side Rendering) via `@angular/ssr` and Express.
+- **State Management:** Services & RxJS.
+- **Styling:** CSS3 (Vanilla).
+- **Notifications:** `ngx-toastr` for interactive user feedback.
+- **Routing:** Angular Router with Route Guards for security.
 
+## ✨ Key Features
+
+- **Product Catalog:** Detailed product listing and individual item views.
+- **Shopping Cart:** Full CRUD operations for managing items before purchase.
+- **Wishlist (Liked):** Save favorite products for later.
+- **Authentication:** Secure Login and Registration system.
+- **User Profile:**
+  - Personal profile management.
+  - Account settings.
+  - Order history tracking.
+- **Security:** Implementation of `authGuard` and `guestGuard` to protect private routes.
+- **SEO & Performance:** Optimized for search engines and fast initial load times through SSR.
+
+## 🛠 Installation and Setup
+
+### Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) (v18+ recommended) and the [Angular CLI](https://angular.io/cli) installed.
+
+### Setup Steps
+1. Clone the repository:
+   ```bash
+   git clone <your-repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd malinka
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development Server
+Run the following command to start a local development server:
 ```bash
+npm run start
+# or
 ng serve
 ```
+Navigate to `http://localhost:4200/` in your browser.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Build
+To create a production-ready build:
 ```bash
-ng generate component component-name
+npm run build
+```
+Build artifacts will be stored in the `dist/` directory.
+
+### Run SSR (Server Rendering)
+```bash
+npm run serve:ssr:Malinka
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📂 Project Structure
 
-```bash
-ng generate --help
-```
+- `src/app/pages` — Core views (Home, Store, Auth, Profile, Cart).
+- `src/app/components` — Reusable UI elements (Header, Footer).
+- `src/app/services` — Business logic and state management (Auth, Products, Cart).
+- `src/app/guards` — Route protection logic.
+- `public/` — Static assets (logos, icons, images).
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+Built with ❤️ for the Malinka project.

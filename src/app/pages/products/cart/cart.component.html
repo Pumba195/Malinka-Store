@@ -36,14 +36,14 @@
       </a>
       <div class="item-actions">
         <div class="quantity-controls">
-          <button class="qty-btn" (click)="updateQuantity(item.productId._id, -1)">-</button>
+          <button class="qty-btn" (click)="updateQuantity(item, -1)">-</button>
           <span class="qty-number">{{ item.quantity }}</span>
-          <button class="qty-btn" (click)="updateQuantity(item.productId._id, 1)">+</button>
+          <button class="qty-btn" (click)="updateQuantity(item, 1)">+</button>
         </div>
         <span class="item-total-price">
           {{ (item.productId.price * item.quantity) | currency }}
         </span>
-        <button (click)="removeFromCart(item)" class="remove-btn" title="Remove all units">✕</button>
+        <button (click)="openConfirmModal(item)" class="remove-btn" title="Remove all units">✕</button>
       </div>
     </div>
     } @else {
@@ -54,11 +54,29 @@
       </div>
       <div class="item-actions">
         <span class="qty-number">Quantity: {{ item?.quantity || 0 }}</span>
-        <button (click)="removeFromCart(item)" class="remove-btn"
-          title="Remove broken item">✕</button>
+        <button (click)="openConfirmModal(item)" class="remove-btn" title="Remove broken item">✕</button>
       </div>
     </div>
     }
+    } 
+    
+    @if (isModalOpen) {
+      <div class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3>Remove item?</h3>
+
+          <div class="product-image">
+            <img [src]="itemToDelete?.productId?.imageUrl || './misc/no-image.png'" alt="{{itemToDelete?.productId?.title}}">
+          </div>
+          
+          <p>Are you sure you want to remove <a [routerLink]="['/product', itemToDelete?.productId?._id]"><strong>{{ itemToDelete?.productId?.title }}</strong></a> from your cart?</p>
+
+          <div class="modal-actions">
+            <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+            <button class="btn-confirm btn" (click)="confirmDelete()">Remove</button>
+          </div>
+        </div>
+      </div>
     }
 
     @if (items().length > 0) {

@@ -1,0 +1,81 @@
+<div class="verify-container">
+  <div class="verify-card">
+    @if (!isChangingEmail) {
+    <!-- Main Verification Screen -->
+    <h1>Confirm Email</h1>
+
+    <div class="verify-info">
+      <p>We sent a 6-digit code to:</p>
+      <p class="verify-info-email"><strong>{{ email }}</strong></p>
+    </div>
+
+    <div class="verify-group">
+      <h4>Verification Code</h4>
+      <input #autofocus class="input-field" type="text" [(ngModel)]="code" placeholder="000000" maxlength="6"
+        (keyup.enter)="onVerify()">
+    </div>
+
+    <div class="status">
+      @if (errorMessage) {
+      <p class="verify-error">{{ errorMessage }}</p>
+      }
+      @if (loading) {
+      <img src="./icons/loading.gif" alt="loading">
+      }
+    </div>
+
+    <div class="verify-actions">
+      <button class="btn" (click)="onVerify()" [disabled]="code.length < 6 || loading">
+        Confirm Code
+      </button>
+    </div>
+
+    <div class="change-page">
+      <a (click)="resendCode()" class="footer-link" [class.disabled]="authService.resendTimer() > 0">
+        @if (authService.resendTimer() > 0) {
+        Resend in {{ authService.resendTimer() }}s
+        } @else {
+        Resend Code
+        }
+      </a>
+      <a (click)="toggleChangeEmailView()" class="footer-link">Change Email</a>
+      <a [routerLink]="['/register']" class="footer-link">Register</a>
+    </div>
+    }
+    @else {
+    <!-- Change/Enter Email Screen -->
+    <h1>Enter Email</h1>
+
+    <div class="verify-info">
+      <p>Please enter your email to receive the verification code.</p>
+    </div>
+
+    <div class="verify-group">
+      <h4>Email</h4>
+      <input #autofocus class="input-field" type="email" [(ngModel)]="newEmail" placeholder="example@mail.com">
+    </div>
+
+    <div class="status">
+      @if (errorMessage) {
+      <p class="verify-error">{{ errorMessage }}</p>
+      }
+      @if (loading) {
+      <img src="./icons/loading.gif" alt="loading">
+      }
+    </div>
+
+    <div class="verify-actions">
+      <button class="btn" (click)="confirmEmailChange()" [disabled]="loading">
+        Send Verification Code
+      </button>
+    </div>
+
+    <div class="change-page">
+      @if (canGoBack) {
+      <a (click)="toggleChangeEmailView()" class="footer-link">Back to verification</a>
+      }
+      <a [routerLink]="['/register']" class="footer-link">Register</a>
+    </div>
+    }
+  </div>
+</div>

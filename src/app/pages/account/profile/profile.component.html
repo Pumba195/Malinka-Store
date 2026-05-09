@@ -1,19 +1,36 @@
+@if (user()) {
+@if (router.url === '/profile') {
 <main class="profile-container">
-  @if (user()) {
-    <div class="profile-card">
-      
-      <div class="user-info">
-        <h1>Welcome, <span>{{ user().name }}</span>!</h1>
-        <p class="email-label">Email address</p>
-        <p class="email-value">{{ user().email }}</p>
+
+  <div class="profile-card">
+    <h1>Welcome to your <span>Profile</span></h1>
+
+    <div class="user-info">  
+      <p class="label">Name</p>
+      <p class="value">{{ user().name }}</p>
+
+      <p class="label">Email address</p>
+      <p class="value">{{ user().email }}</p>
+    </div>
+
+    <div class="profile-actions">
+      <div class="buttons-flex">
+        <button routerLink="/profile/orders" class="orders-btn btn">Order History</button>
+        <button routerLink="/profile/settings" class="settings-btn btn">Edit Profile</button>
       </div>
 
       <button class="logout-btn btn" (click)="onLogout()">Logout</button>
     </div>
-  } @else {
-    <div class="guest-card">
-      <p>Please, log in to see your profile.</p>
-      <button routerLink="/login" class="login-link btn">Go to Login</button>
-    </div>
-  }
+  </div>
 </main>
+}
+<router-outlet></router-outlet>
+
+} @else {
+<main class="profile-container">
+  <div class="guest-card">
+    <p>Please, log in to see your profile.</p>
+    <button routerLink="/login" class="login-link btn">Go to Login</button>
+  </div>
+</main>
+}
