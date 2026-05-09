@@ -69,12 +69,21 @@ input {
     margin: 22px 0 0 0;
 }
 
+.status {
+    margin-top: 15px;
+}
+
+.status img {
+    height: 60px;
+    width: auto;
+}
+
 .verify-actions {
     display: flex;
     flex-direction: column;
 }
 
-.verify-footer {
+.change-page {
     margin: 40px 0 22px 0;
     padding-top: 20px;
     border-top: 1px solid #333;
@@ -83,21 +92,27 @@ input {
     color: #ddd;
 }
 
-.verify-link {
+.footer-link {
     flex: 1;
     text-align: center;
-
     color: #f10020;
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
+    transition: color 0.3s;
 }
 
-.verify-link:not(:last-child) {
+.footer-link.disabled {
+    color: #888;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.footer-link:not(:last-child) {
     border-right: 1px solid #333;
 }
 
-.verify-link:hover {
+.footer-link:not(.disabled):hover {
     text-decoration: underline;
 }
 

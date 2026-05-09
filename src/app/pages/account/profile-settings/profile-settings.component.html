@@ -13,9 +13,9 @@
           <div class="info-label">Full Name</div>
           <div class="info-value">
             @if (user()?.name) {
-              {{ user()?.name }}
+            {{ user()?.name }}
             } @else {
-              No name provided
+            No name provided
             }
           </div>
           <div class="info-action">
@@ -28,9 +28,9 @@
           <div class="info-label">Email Address</div>
           <div class="info-value">
             @if (user()?.email) {
-              {{ user()?.email }}
+            {{ user()?.email }}
             } @else {
-              No email provided
+            No email provided
             }
           </div>
           <div class="info-action">
@@ -57,70 +57,70 @@
 
   <!-- Modal Overlays -->
   @if (activeModal() !== null) {
-    <div class="modal-overlay" (click)="closeModal()">
-      <div class="modal-card" (click)="$event.stopPropagation()">
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
 
-        <!-- Name Change Modal -->
-        @if (activeModal() === 'name') {
-          <h2>Change <span>Name</span></h2>
-          
-          <div class="form-group">
-            <h4>New Name</h4>
-            <input 
-              type="text" 
-              #autofocus 
-              [(ngModel)]="newName" 
-              class="input-field" 
-              placeholder="Enter new name"
-            >
-          </div>
+      <!-- Name Change Modal -->
+      @if (activeModal() === 'name') {
+      <h2>Change <span>Name</span></h2>
 
-          @if (modalError() !== '') {
-            <p class="error-text">{{ modalError() }}</p>
-          }
-
-          <div class="modal-actions">
-            <button (click)="onSaveName()" class="btn save-btn" [disabled]="loading()">
-              @if (loading() === true) {
-                <img src="./icons/loading.gif" class="loading-inline" alt="loading">
-              }
-              Save Changes
-            </button>
-            <button (click)="closeModal()" class="cancel-btn btn">Cancel</button>
-          </div>
-        }
-
-        <!-- Email Change Modal -->
-        @if (activeModal() === 'email') {
-          <h2>Change <span>Email</span></h2>
-          
-          <div class="form-group">
-            <h4>New Email</h4>
-            <input 
-              type="email" 
-              #autofocus 
-              [(ngModel)]="newEmail" 
-              class="input-field" 
-              placeholder="Enter new email"
-            >
-          </div>
-
-          @if (modalError() !== '') {
-            <p class="error-text">{{ modalError() }}</p>
-          }
-
-          <div class="modal-actions">
-            <button (click)="onSaveEmail()" class="btn save-btn" [disabled]="loading()">
-              @if (loading() === true) {
-                <img src="./icons/loading.gif" class="loading-inline" alt="loading">
-              }
-              Save Changes
-            </button>
-            <button (click)="closeModal()" class="cancel-btn btn">Cancel</button>
-          </div>
-        }
-
+      <div class="form-group">
+        <h4>New Name</h4>
+        <input type="text" #autofocus [(ngModel)]="newName" class="input-field" placeholder="Enter new name">
       </div>
+
+      @if (modalError() !== '') {
+        <p class="error-text">{{ modalError() }}</p>
+      }
+
+      <div class="status">
+        @if (errorMessage) {
+          <p class="server-error">{{ errorMessage }}</p>
+        }
+        @if (loading) {
+          <img src="./icons/loading.gif" alt="loading">
+        }
+      </div>
+
+      <div class="modal-actions">
+        <button (click)="closeModal()" class="cancel-btn btn">Cancel</button>
+        <button (click)="onSaveName()" class="btn save-btn" [disabled]="loading">
+          Save Changes
+        </button>
+      </div>
+      }
+
+      <!-- Email Change Modal -->
+      @if (activeModal() === 'email') {
+      <h2>Change <span>Email</span></h2>
+
+      <div class="form-group">
+        <h4>New Email</h4>
+        <input type="email" #autofocus [(ngModel)]="newEmail" class="input-field" placeholder="Enter new email">
+      </div>
+
+      @if (modalError() !== '') {
+        <p class="error-text">{{ modalError() }}</p>
+      }
+
+      <div class="status">
+        @if (errorMessage) {
+          <p class="server-error">{{ errorMessage }}</p>
+        }
+        @if (loading) {
+          <img src="./icons/loading.gif" alt="loading">
+        }
+      </div>
+
+      <div class="modal-actions">
+        <button (click)="closeModal()" class="cancel-btn btn">Cancel</button>
+        <button (click)="onSaveEmail()" class="btn save-btn" [disabled]="loading">
+          Save Changes
+        </button>
+      </div>
+      }
+
     </div>
+  </div>
   }
 </div>

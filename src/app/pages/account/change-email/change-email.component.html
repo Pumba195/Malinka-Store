@@ -9,29 +9,34 @@
 
     <div class="form-group">
       <h4>Verification Code</h4>
-      <input 
-        class="input-field" 
-        type="text" 
-        [(ngModel)]="code" 
-        placeholder="000000" 
-        maxlength="6"
-        (keyup.enter)="onVerify()"
-      >
+      <input #autofocus class="input-field" type="text" [(ngModel)]="code" placeholder="000000" maxlength="6"
+        (keyup.enter)="onVerify()">
     </div>
 
-    @if (errorMessage) {
-      <p class="error-text">{{ errorMessage }}</p>
-    }
+    <div class="status">
+      @if (errorMessage) {
+      <p class="server-error">{{ errorMessage }}</p>
+      }
+      @if (loading) {
+      <img src="./icons/loading.gif" alt="loading">
+      }
+    </div>
 
     <div class="actions">
-      <button class="btn verify-btn" (click)="onVerify()" [disabled]="code.length < 6">
+      <button class="btn verify-btn" (click)="onVerify()" [disabled]="code.length < 6 || loading">
         Verify & Update Email
       </button>
+    </div>
 
-      <div class="footer-links">
-        <a (click)="resendCode()" class="link">Resend Code</a>
-        <a routerLink="/profile/settings" class="link">Back to Settings</a>
-      </div>
+    <div class="change-page">
+      <a (click)="resendCode()" class="footer-link" [class.disabled]="authService.resendTimer() > 0">
+        @if (authService.resendTimer() > 0) {
+          Resend in {{ authService.resendTimer() }}s
+        } @else {
+          Resend Code
+        }
+      </a>
+      <a routerLink="/profile/settings" class="footer-link">Back to Settings</a>
     </div>
   </div>
 </div>

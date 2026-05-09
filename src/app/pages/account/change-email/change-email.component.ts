@@ -13,14 +13,15 @@ import { ToastService } from '../../../services/toast.service';
   styleUrl: './change-email.component.css'
 })
 export class ChangeEmailComponent implements OnInit {
-  private authService = inject(AuthService);
+  protected authService = inject(AuthService);
   private router = inject(Router);
   private toastService = inject(ToastService);
   private platformId = inject(PLATFORM_ID);
 
   email: string = '';
   code: string = '';
-  errorMessage: string = '';
+  protected errorMessage = '';
+  protected loading = false;
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -35,9 +36,13 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   onVerify() {
+    if (this.loading) return;
     this.errorMessage = '';
+    this.loading = true;
+
     this.authService.verifyEmailChange(this.code).subscribe({
       next: (user: any) => {
+        this.loading = false;
         if (isPlatformBrowser(this.platformId)) {
           localStorage.removeItem('pendingEmail');
         }
@@ -45,17 +50,31 @@ export class ChangeEmailComponent implements OnInit {
         this.toastService.show('Email updated', 'Your email has been successfully changed', 'auth');
       },
       error: (err) => {
+        this.loading = false;
         this.errorMessage = err.error?.message || 'The code is invalid or has expired';
       }
     });
   }
 
   resendCode() {
+    if (this.authService.resendTimer() > 0 || this.loading) {
+      if (this.authService.resendTimer() > 0) {
+        this.toastService.show('Wait a moment', 'You can send another code in ' + this.authService.resendTimer() + ' seconds', 'error');
+      }
+      return;
+    }
+
+    this.errorMessage = '';
+    this.loading = true;
+
     this.authService.resendEmailChangeCode().subscribe({
       next: () => {
+        this.loading = false;
+        this.authService.startResendCooldown();
         this.toastService.show('Code resent', 'New verification code has been sent', 'auth');
       },
       error: (err) => {
+        this.loading = false;
         this.errorMessage = 'Failed to resend code';
       }
     });

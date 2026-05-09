@@ -5,7 +5,7 @@
 
       <div class="form-group">
         <h4>Name</h4>
-        <input class="input-field" type="text" formControlName="name" placeholder="Enter your name">
+        <input #autofocus class="input-field" type="text" formControlName="name" placeholder="Enter your name">
         @if (f.name.touched && f.name.errors) {
         <small class="error-text">
           @if (f.name.errors['required']) { Name is required }

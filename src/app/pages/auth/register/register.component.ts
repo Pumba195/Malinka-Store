@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): V
   styleUrl: './register.component.css'
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toastService = inject(ToastService);
@@ -33,10 +33,16 @@ export class RegisterComponent {
   private cartService = inject(CartService);
   private productsService = inject(ProductsService);
 
+  @ViewChild('autofocus') inputElement!: ElementRef<HTMLInputElement>;
+
   protected errorMessage = '';
   protected loading = false;
   protected showPassword = false;
   protected showConfirmPassword = false;
+
+  ngAfterViewInit() {
+    this.inputElement.nativeElement.focus();
+  }
 
   registerForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
@@ -53,11 +59,17 @@ export class RegisterComponent {
       return;
     }
 
+    if (this.authService.resendTimer() > 0) {
+      this.toastService.show('Wait a moment', 'You can send another code in ' + this.authService.resendTimer() + ' seconds', 'error');
+      return;
+    }
+
     this.loading = true;
 
     this.authService.register(this.registerForm.value).subscribe({
       next: (response) => {
         this.loading = false;
+        this.authService.startResendCooldown();
         this.authService.openVerifyEmailPage(this.registerForm.value.email ?? undefined)
         this.toastService.show('Successful registration', 'Now please confirm your email', 'auth')
       },

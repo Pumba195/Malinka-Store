@@ -149,8 +149,15 @@
 }
 
 @keyframes modalAppear {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-card h2 {
@@ -163,12 +170,8 @@
     color: #f10020;
 }
 
-.form-group {
-    margin-bottom: 25px;
-}
-
 .form-group h4 {
-    margin: 0 0 10px 5px;
+    margin: 0 0 0 5px;
     font-weight: 400;
     color: #ccc;
     font-size: 12px;
@@ -176,21 +179,47 @@
     letter-spacing: 1px;
 }
 
+.input-field {
+    margin: 10px 0;
+}
+
 .error-text {
-    color: #f10020;
-    font-size: 13px;
-    margin-top: -15px;
-    margin-bottom: 20px;
+    color: #ff4d4d;
+    font-size: 12px;
     display: block;
-    text-align: left;
+    margin-top: -5px;
     margin-left: 5px;
+}
+
+.server-error {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff4d4d;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    text-align: left;
+}
+
+.status {
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.status img {
+    height: 60px;
+    width: auto;
+}
+.status p {
+    text-align: center;
 }
 
 .modal-actions {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 35px;
+    gap: 10px;
+    margin-top: 30px;
 }
 
 .cancel-btn {
@@ -228,15 +257,62 @@
 }
 
 @media (max-width: 768px) {
-    .settings-container { padding: 90px 10px 30px 10px; }
-    .settings-wide { padding: 20px; border-radius: 15px; }
-    .settings-info h1 { font-size: 1.8rem; }
-    .subtitle-label { font-size: 0.85rem; }
-    .info-item { flex-direction: column; align-items: stretch; height: auto; }
-    .info-item:hover { transform: none; }
-    .info-label { width: 100%; padding: 15px 10px; border: none; font-size: 10px; }
-    .info-value { padding: 15px 10px; border: none; border-top: 1px solid #333; border-bottom: 1px solid #333; width: 100%; font-size: 0.95rem; }
-    .info-action { padding: 15px 10px; width: 100%; }
-    .edit-btn { width: 100%; text-align: center; padding: 5px; }
-    .modal-card { width: 95%; padding: 25px; }
+    .settings-container {
+        padding: 90px 10px 30px 10px;
+    }
+
+    .settings-wide {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .settings-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle-label {
+        font-size: 0.85rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+    }
+
+    .info-item:hover {
+        transform: none;
+    }
+
+    .info-label {
+        width: 100%;
+        padding: 15px 10px;
+        border: none;
+        font-size: 10px;
+    }
+
+    .info-value {
+        padding: 15px 10px;
+        border: none;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .info-action {
+        padding: 15px 10px;
+        width: 100%;
+    }
+
+    .edit-btn {
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .modal-card {
+        width: 95%;
+        padding: 25px;
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { ToastService } from '../../../services/toast.service';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -23,9 +23,15 @@ export class LoginComponent {
   private toastService = inject(ToastService);
   private productsService = inject(ProductsService);
 
+  @ViewChild('autofocus') inputElement!: ElementRef<HTMLInputElement>;
+
   protected errorMessage = '';
   protected loading = false;
   protected showPassword = false;
+
+  ngAfterViewInit() {
+    this.inputElement.nativeElement.focus();
+  }
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -46,7 +52,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: (res: any) => {
           this.loading = false;
-
+          localStorage.removeItem('email');
           this.cartService.loadCart();
           this.productsService.getFullFavorites();
           

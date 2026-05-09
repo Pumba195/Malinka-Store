@@ -15,6 +15,8 @@ export class AuthService {
   private platformId = inject(PLATFORM_ID);
 
   currentUser = signal<any>(this.getUserFromStorage());
+  resendTimer = signal<number>(0);
+  private timerInterval: any;
 
   private getUserFromStorage() {
     if (!isPlatformBrowser(this.platformId)) {
@@ -28,7 +30,46 @@ export class AuthService {
     return userJson ? JSON.parse(userJson) : null;
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { 
+    this.initResendTimer();
+  }
+
+  private initResendTimer() {
+    if (isPlatformBrowser(this.platformId)) {
+      const lastResend = localStorage.getItem('lastResendTimestamp');
+      if (lastResend) {
+        const diff = Math.floor((Date.now() - parseInt(lastResend)) / 1000);
+        if (diff < 60) {
+          this.startCooldown(60 - diff);
+        }
+      }
+    }
+  }
+
+  private startCooldown(seconds: number) {
+    // if (seconds > 5){
+    //   seconds = 5;
+    // }
+    this.resendTimer.set(seconds);
+
+
+    if (this.timerInterval) clearInterval(this.timerInterval);
+    
+    this.timerInterval = setInterval(() => {
+      this.resendTimer.update(v => v - 1);
+      if (this.resendTimer() <= 0) {
+        this.resendTimer.set(0);
+        clearInterval(this.timerInterval);
+      }
+    }, 1000);
+  }
+
+  startResendCooldown() {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('lastResendTimestamp', Date.now().toString());
+    }
+    this.startCooldown(60);
+  }
 
   register(userData: any) {
     return this.http.post(`${this.apiUrl}/register`, userData)

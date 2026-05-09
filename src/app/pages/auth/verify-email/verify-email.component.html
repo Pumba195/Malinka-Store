@@ -11,24 +11,35 @@
 
     <div class="verify-group">
       <h4>Verification Code</h4>
-      <input class="input-field" type="text" [(ngModel)]="code" placeholder="000000" maxlength="6"
+      <input #autofocus class="input-field" type="text" [(ngModel)]="code" placeholder="000000" maxlength="6"
         (keyup.enter)="onVerify()">
     </div>
 
-    @if (errorMessage) {
-    <p class="verify-error">{{ errorMessage }}</p>
-    }
+    <div class="status">
+      @if (errorMessage) {
+      <p class="verify-error">{{ errorMessage }}</p>
+      }
+      @if (loading) {
+      <img src="./icons/loading.gif" alt="loading">
+      }
+    </div>
 
     <div class="verify-actions">
-      <button class="btn" (click)="onVerify()" [disabled]="code.length < 6">
+      <button class="btn" (click)="onVerify()" [disabled]="code.length < 6 || loading">
         Confirm Code
       </button>
+    </div>
 
-      <div class="verify-footer">
-        <a (click)="resendCode()" class="verify-link">Resend Code</a>
-        <a (click)="toggleChangeEmailView()" class="verify-link">Change Email</a>
-        <a [routerLink]="['/register']" class="verify-link">Register</a>
-      </div>
+    <div class="change-page">
+      <a (click)="resendCode()" class="footer-link" [class.disabled]="authService.resendTimer() > 0">
+        @if (authService.resendTimer() > 0) {
+        Resend in {{ authService.resendTimer() }}s
+        } @else {
+        Resend Code
+        }
+      </a>
+      <a (click)="toggleChangeEmailView()" class="footer-link">Change Email</a>
+      <a [routerLink]="['/register']" class="footer-link">Register</a>
     </div>
     }
     @else {
@@ -38,27 +49,32 @@
     <div class="verify-info">
       <p>Please enter your email to receive the verification code.</p>
     </div>
-    
+
     <div class="verify-group">
       <h4>Email</h4>
-      <input class="input-field" type="email" [(ngModel)]="newEmail" placeholder="example@mail.com">
+      <input #autofocus class="input-field" type="email" [(ngModel)]="newEmail" placeholder="example@mail.com">
     </div>
 
-    @if (errorMessage) {
-    <p class="verify-error">{{ errorMessage }}</p>
-    }
+    <div class="status">
+      @if (errorMessage) {
+      <p class="verify-error">{{ errorMessage }}</p>
+      }
+      @if (loading) {
+      <img src="./icons/loading.gif" alt="loading">
+      }
+    </div>
 
     <div class="verify-actions">
-      <button class="btn" (click)="confirmEmailChange()">
+      <button class="btn" (click)="confirmEmailChange()" [disabled]="loading">
         Send Verification Code
       </button>
+    </div>
 
-      <div class="verify-footer">
-        @if (canGoBack) {
-        <a (click)="toggleChangeEmailView()" class="verify-link">Back to verification</a>
-        }
-        <a [routerLink]="['/register']" class="verify-link">Register</a>
-      </div>
+    <div class="change-page">
+      @if (canGoBack) {
+      <a (click)="toggleChangeEmailView()" class="footer-link">Back to verification</a>
+      }
+      <a [routerLink]="['/register']" class="footer-link">Register</a>
     </div>
     }
   </div>
