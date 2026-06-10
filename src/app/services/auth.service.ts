@@ -14,8 +14,8 @@ export class AuthService {
 
   private platformId = inject(PLATFORM_ID);
 
-  currentUser = signal<any>(this.getUserFromStorage());
-  resendTimer = signal<number>(0);
+  public currentUser = signal<any>(this.getUserFromStorage());
+  public resendTimer = signal<number>(0);
   private timerInterval: any;
 
   private getUserFromStorage() {

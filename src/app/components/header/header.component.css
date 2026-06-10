@@ -55,7 +55,6 @@ header::before {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px 0 0;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     width: 100%;
@@ -68,6 +67,8 @@ header::before {
     left: 0;
     z-index: 1000;
     transition: transform 0.4s ease-in-out, background 0.3s;
+
+    padding-inline: calc((100% - 1700px) / 2);
 }
 
 .logo {
@@ -119,7 +120,7 @@ header::before {
 /* .central-menu.trans-none a{
     transition: none;
 } */
- 
+
 .central-menu li a.active-link {
     color: #f10020;
     text-shadow: 0 0 10px #f10020;
@@ -153,7 +154,7 @@ header::before {
     gap: 40px;
 
     margin: 0;
-    padding: 0;
+    padding: 0 40px 0 0;
 }
 
 .right-menu-icons img {
