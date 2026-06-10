@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 90vh;
     padding: 110px 20px 40px 20px;
 }
 
@@ -21,7 +21,7 @@
 .settings-info h1 {
     font-size: 2.2rem;
     color: white;
-    margin-bottom: 5px;
+    margin: 0 0 5px 0;
     word-wrap: break-word;
 }
 

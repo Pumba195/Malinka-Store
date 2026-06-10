@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
 
   @ViewChild('autofocus') firstInput!: ElementRef<HTMLInputElement>;
 
-  mode = signal<'change' | 'reset-request' | 'reset-verify'>('change');
+  mode = signal<'change' | 'reset-verify'>('change');
   protected loading = false;
   protected errorMessage = '';
 
@@ -71,7 +71,7 @@ export class ChangePasswordComponent implements OnInit {
     if (field === 'confirm') this.showConfirmPassword.update(v => !v);
   }
 
-  setMode(newMode: 'change' | 'reset-request' | 'reset-verify') {
+  setMode(newMode: 'change' | 'reset-verify') {
     this.mode.set(newMode);
     this.errorMessage = '';
     this.resetVisibility();

@@ -1,34 +1,140 @@
-footer {
+.footer {
     background-color: #1a1a1a;
-    border-top: 2px solid #f10020;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
+    color: #eee;
+    padding: 40px 0 20px;
+    border-top: 1px solid #333;
+    width: 100%;
 }
 
-nav ul {
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+.brand-col {
+    flex: 1.5;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    height: 35px;
+    width: auto;
+}
+
+.footer-logo span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f10020;
+}
+
+.footer-desc {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 25px;
+    max-width: 350px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icons a {
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img {
+    height: 36px;
+    width: auto;
+}
+
+.social-icons a:hover {
+    transform: translateY(-2px);
+}
+
+.footer-col h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.footer-col ul {
     list-style: none;
     padding: 0;
-    margin: 20px;
-}
-nav a {
-    text-decoration: none;
-    color: #ddd;
-    
-    font-size: clamp(10px, 1vw, 20px);
-    line-height: 2; 
-    transition: color 0.3s;
-}
-nav a:hover {
-    color: #f10020; 
+    margin: 0;
 }
 
+.footer-col ul li {
+    margin-bottom: 4px;
+}
+
+.footer-col ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #888;
+    font-size: 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.footer-col ul li a:hover {
+    color: #f10020;
+    transform: translateX(2px);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+}
 
 .Corporation {
-    text-align: center;
-    width: 100%;
-    margin: 20px 0 10px 0;
-    font-size: clamp(8px, 0.8vw, 16px);
-    color: #777;
+    color: #555;
+    font-size: 13px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-desc {
+        margin-inline: auto;
+    }
 }

@@ -1,30 +1,57 @@
-<footer>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
 
-    <nav class="first-nav">
+      <!-- Company/Brand Column -->
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <img src="./logo/Malinka_Logo_Color.png" alt="Malinka Logo">
+          <span>Malinka</span>
+        </div>
+        <p class="footer-desc">The best store for your digital and physical needs. Quality products, exceptional
+          service.</p>
+        <div class="social-icons">
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="Telegram">
+            <img src="./icons/telegram-icon.png" alt="Telegram">
+          </a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="Instagram">
+            <img src="./icons/instagram-icon.png" alt="Instagram">
+          </a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="Facebook">
+            <img src="./icons/facebook-icon.png" alt="Facebook">
+          </a>
+          <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="YouTube">
+            <img src="./icons/youtube-icon.png" alt="YouTube">
+          </a> -->
+        </div>
+      </div>
+
+      <!-- General Links -->
+      <div class="footer-col">
+        <h3>Common</h3>
         <ul>
-            <li><a href="#">General</a></li>
-            <li><a href="about">About us</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a href="#">Jobs</a></li>
+          <li><a routerLink="/">General</a></li>
+          <li><a routerLink="/store">Store</a></li>
+          <li><a routerLink="/about">About Us</a></li>
+          <li><a routerLink="/">Jobs</a></li>
         </ul>
-    </nav>
-    
-    <nav class="second-nav">
+      </div>
+
+      <!-- Legal Links -->
+      <div class="footer-col">
+        <h3>Support</h3>
         <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Privacy policy</a></li>
-            <li><a href="#">Cookie policy</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+          <li><a routerLink="/">FAQ</a></li>
+          <li><a routerLink="/">Privacy Policy</a></li>
+          <li><a routerLink="/">Cookie Policy</a></li>
         </ul>
-    </nav>
+      </div>
 
-    <nav class="social-nav">
-        <ul>
-            <li><a href="https://web.telegram.org/">Telegram</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-        </ul>
-    </nav>
+    </div>
 
-    <em class="Corporation">© 2026 Malinka – The best store</em>
-
+    <div class="footer-bottom">
+      <p class="Corporation">© 2026 Malinka – The best store. All rights reserved.</p>
+    </div>
+  </div>
 </footer>
